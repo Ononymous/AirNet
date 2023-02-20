@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react'
-import { StyleSheet, Text, View,SafeAreaView,Image,TouchableWithoutFeedback,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,SafeAreaView,Image,TouchableWithoutFeedback,TouchableOpacity, Button } from 'react-native';
 
 export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
       
-      <Text numberOfLines={1} onPress={()=>console.log("Press")} >Open up App.js to start working on your app!</Text>
+      <Text numberOfLines={1} onPress={()=>console.log("Press")} >This a practice and learning App</Text>
      
       {/* <Image source={require('./assets/splash.png')}/> When using the local images*/}
       <TouchableOpacity onPress={()=>console.log("Image Tapped")}>
@@ -17,6 +17,7 @@ export default function App() {
         uri:"https://picsum.photos/200"}}/>
         {/* Online images */}
       </TouchableOpacity>
+      <Button title='Click Me!' color='black' onPress={()=>alert('Button Tapped') }/>
   
     </SafeAreaView>
   );
