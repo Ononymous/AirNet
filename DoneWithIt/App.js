@@ -5,7 +5,8 @@ import { StyleSheet, Text, View,SafeAreaView,Alert,Image,TouchableWithoutFeedbac
 export default function App() {
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container,containerStyle]}>
+      {/* object on the right overwrite the property of the left */}
       
       <Text numberOfLines={1} onPress={()=>console.log("Press")} >This a practice and learning App</Text>
      
@@ -26,7 +27,7 @@ export default function App() {
     </SafeAreaView>
   );
 }
-
+const containerStyle={backgroundColor:'orange'}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
