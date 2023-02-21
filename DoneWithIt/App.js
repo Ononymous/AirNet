@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react'
-import { StyleSheet, Text, View,SafeAreaView,Image,TouchableWithoutFeedback,TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View,SafeAreaView,Alert,Image,TouchableWithoutFeedback,TouchableOpacity, Button } from 'react-native';
 
 export default function App() {
 
@@ -17,7 +17,11 @@ export default function App() {
         uri:"https://picsum.photos/200"}}/>
         {/* Online images */}
       </TouchableOpacity>
-      <Button title='Click Me!' color='black' onPress={()=>alert('Button Tapped') }/>
+      <Button title='Click Me!' color='black' 
+      onPress={()=>Alert.prompt("My Titile","My Massage",text=>console.log(text)
+      // the text option does not work with IOS
+      // the prompt does not work with Android 
+      ) }/>
   
     </SafeAreaView>
   );
