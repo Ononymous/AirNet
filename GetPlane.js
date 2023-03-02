@@ -6,7 +6,7 @@ export default function GetPlane(){
 
     const context = useContext(PlaneContext)
     
-    const api_key = "" // Ask for API key from Gen
+    const api_key = "8f570296-449a-4e0f-9e6d-f60be530ecec"
 
     let lat = context.location?.coords?.latitude
     let lng = context.location?.coords?.longitude
@@ -33,13 +33,20 @@ export default function GetPlane(){
 
     const datamap = (context.data)?.map((item, index) => {
         return (
-            <Text key={index}>Index:{index} Lat:{item.lat} Lng:{item.lng}</Text>
+            <Text key={index}>Hex:{item.hex} Lat:{item.lat} Lng:{item.lng}</Text>
         )
     })
 
     return(
         <View style={styles.container}>
             <Button title="Get Planes" onPress={() => {fetchApiCall()}}/>
+            <Text>Lat: {lat}</Text>
+            <Text>Lng: {lng}</Text>
+            <Text>North Lat: {nLat}</Text>
+            <Text>North Lng: {nLng}</Text>
+            <Text>South Lat: {sLat}</Text>
+            <Text>South Lng: {sLng}</Text>
+            <Text></Text>
             <ScrollView>{datamap}</ScrollView>
         </View>
     )
@@ -48,4 +55,4 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-  });
+});

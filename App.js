@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import GetLocation from './GetLocation';
 import GetPlane from './GetPlane';
+import GetCompass from './GetCompass';
 
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons'; 
@@ -55,12 +56,17 @@ export default function App() {
                   iconName = focused ? 'ios-airplane-sharp' : 'airplane-outline';
                   return <Ionicons name={iconName} size={size} color={color} />
                 } 
+                else if (rn === "Compass") {
+                  iconName = focused ? 'compass' : 'compass-outline';
+                  return <Ionicons name={iconName} size={size} color={color} />
+                } 
                 return <View/>;
               },
             })}
           >
             <Tab.Screen name="GPS" component={GetLocation} />
             <Tab.Screen name="Plane" component={GetPlane} />
+            <Tab.Screen name="Compass" component={GetCompass} />
           </Tab.Navigator>
         </NavigationContainer>
       </SafeAreaView>

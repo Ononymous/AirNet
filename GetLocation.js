@@ -13,6 +13,19 @@ export default function GetLocation(){
     const [text, setText] = useState("Waiting..");
 
     useEffect(() => {
+        let lat, lng, alt
+
+        if (errorMsg) {
+            setText(errorMsg);
+        } else if(context.location) {
+            lat = context.location.coords.latitude
+            lng = context.location.coords.longitude
+            alt = context.location.coords.altitude
+            setText("Your location:\nLatitude: " + lat + "\nLongitude: " + lng + "\nAltitude: " + alt + "\n")
+        }
+    }, [context.location, errorMsg]);
+
+    useEffect(() => {
         (async () => {
           
             let { status } = await Location.requestForegroundPermissionsAsync();
@@ -24,17 +37,6 @@ export default function GetLocation(){
             let location = await Location.getCurrentPositionAsync({});
 
             context.setLocation(location);
-
-            let lat, lng, alt
-
-            if (errorMsg) {
-                setText(errorMsg);
-            } else if(context.location) {
-                lat = context.location.coords.latitude
-                lng = context.location.coords.longitude
-                alt = context.location.coords.altitude
-                setText("Your location:\nLatitude: " + lat + "\nLongitude: " + lng + "\nAltitude: " + alt + "\n")
-            }
         })();
     }, [counter]);
 
