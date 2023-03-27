@@ -13,10 +13,6 @@ export default function App() {
         <Button title="Settings" onPress={() => alert('Settings button pressed!')} />
       </View>
 
-      <View style={styles.refreshRow}>
-        <RefreshButton onPress={() => alert("Refresh button pressed")}/>
-      </View>
-
       <View style={styles.planesWrapper}>
         <ScrollView style={styles.ScrollView} persistentScrollbar={true}>
 
@@ -68,9 +64,21 @@ export default function App() {
             planeType="Boeing 737"
           />
 
-          
+          <PlaneItem
+            imageUrl="https://e3.365dm.com/21/07/1600x900/skynews-boeing-737-plane_5435020.jpg?20210702173340"
+            airline="United Airlines"
+            flightNumber="UA123"
+            origin="SFO"
+            destination="JFK"
+            planeType="Boeing 737"
+          />
+
           </View>
         </ScrollView>
+      </View>
+
+      <View style={styles.refreshRow}>
+        <RefreshButton onPress={() => alert("Refresh button pressed")}/>
       </View>
 
     </View>
@@ -87,6 +95,7 @@ const styles = StyleSheet.create({
   ScrollView: {
     backgroundColor: '#C3C9E9',
     borderRadius: 10,
+    height: 600,
   },
 
   container: {
@@ -117,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#C3C9E9',
     borderRadius: 10,
     padding: 10,
-    height: 5000,
+    height: 1000,
 
   },
 });
