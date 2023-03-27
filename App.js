@@ -49,6 +49,7 @@ export default function App() {
 const styles = StyleSheet.create({
   ScrollView: {
     backgroundColor: '#C3C9E9',
+    borderRadius: 10,
   },
   container: {
     flex: 1,
