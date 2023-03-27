@@ -1,11 +1,11 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 
-const CameraButton = ({ onPress }) => {
+const HeartButton = ({ onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Ionicons name="camera" size={24} color="white" />
+      <AntDesign name="hearto" size={27} color="white" />
     </TouchableOpacity>
   );
 };
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CameraButton;
+export default HeartButton;

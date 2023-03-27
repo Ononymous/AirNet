@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, View, Image, Text, Button } from 'react-native';
 import CameraButton from './CameraButton';
+import HeartButton from './HeartButton';
 
 const PlaneItem = ({ imageUrl, airline, flightNumber, origin, destination, planeType }) => {
   return (
@@ -18,8 +19,8 @@ const PlaneItem = ({ imageUrl, airline, flightNumber, origin, destination, plane
 
         {/* Lower container */}
         <View style={styles.lowerContainer}>
-          <CameraButton /> 
-          <CameraButton />
+          <CameraButton onPress={() => alert("Camera pressed")}/> 
+          <HeartButton onPress={() => alert("Heart pressed")}/>
         </View>
 
       </View>
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   lowerContainer: {
-    padding: 5,
+    paddingTop: 5,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
