@@ -7,10 +7,15 @@ export default function App() {
   return (
     <View style={styles.container}> 
 
-      {/* Title */}
+      {/* Title and settings area*/}
+      <View style={styles.titleWrapper}>
+      <Text style={styles.sectionTitle}>Nearby Planes</Text>
+      <Button title="Settings" onPress={() => alert('Settings button pressed!')} />
+      </View>
       <View style={styles.planesWrapper}>
-        <Text style={styles.sectionTitle}>Nearby Planes</Text>
+        {/* <Text style={styles.sectionTitle}>Nearby Planes</Text> */}
         
+
         <View style={styles.items}>
           {/* This is where the planes will go */}
 
@@ -27,8 +32,8 @@ export default function App() {
           imageUrl="https://e3.365dm.com/21/07/1600x900/skynews-boeing-737-plane_5435020.jpg?20210702173340"
           airline="United Airlines"
           flightNumber="UA123"
-          origin="San Francisco"
-          destination="New York"
+          origin="SFO"
+          destination="JFK"
           planeType="Boeing 737"
         />
 
@@ -45,20 +50,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#373F47',
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
 
+  titleWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingTop: 50,
+  },  
+
   planesWrapper: {
-    paddingTop: 80,
-    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingHorizontal: 10,
   },
 
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
-    marginBottom: 20,
   },
-  items: {},
+  items: {
+    backgroundColor: '#C3C9E9',
+    borderRadius: 10,
+    padding: 10,
+    height: 500,
+
+  },
 });

@@ -1,33 +1,46 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, Button } from 'react-native';
 
 const PlaneItem = ({ imageUrl, airline, flightNumber, origin, destination, planeType }) => {
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: imageUrl }} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.airline}>{airline}</Text>
-        <Text style={styles.flightNumber}>{flightNumber}</Text>
-        <Text style={styles.origin}>{origin}</Text>
-        <Text style={styles.destination}>{destination}</Text>
-        <Text style={styles.planeType}>{planeType}</Text>
+      <View style={styles.container}>
+        {/* Upper container */}
+        <View style={styles.upperContainer}>
+          <Image source={{ uri: imageUrl }} style={styles.image} />
+          <View style={styles.textContainer}>
+            <Text style={styles.airline}>{airline}</Text>
+            <Text style={styles.flightNumber}>{flightNumber}</Text>
+            <Text style={styles.flightPath}>{origin} to {destination}</Text>
+            <Text style={styles.planeType}>{planeType}</Text>
+          </View>
+        </View>
+
+        {/* Lower container */}
+        <View style={styles.lowerContainer}>
+          <Button title="CAMERA" onPress={() => alert('CAMERA button pressed!')} />
+        </View>
+
       </View>
-    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  upperContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingBottom: 45,
-    paddingTop: 5,
-    paddingLeft: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    backgroundColor: '#C3C9E9',
+  },
+  lowerContainer: {
+    flexDirection: 'row',
+  },
+  container: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 5,
+    backgroundColor: '#247BA0',
     borderRadius: 10,
     marginBottom: 10,
+    borderWidth: 5,
+    borderColor: '#373F47',
   },
   image: {
     width: 150,
@@ -35,6 +48,8 @@ const styles = StyleSheet.create({
     marginRight: 16,
     borderRadius: 10,
     resizeMode: 'cover',
+    borderWidth: 5,
+    borderColor: '#373F47',
   },
   textContainer: {
     flex: 1,
@@ -46,17 +61,14 @@ const styles = StyleSheet.create({
   flightNumber: {
     fontSize: 16,
   },
-  origin: {
+  flightPath: {
     fontSize: 14,
-    color: '#666',
   },
   destination: {
     fontSize: 14,
-    color: '#666',
   },
   planeType: {
     fontSize: 14,
-    color: '#666',
   },
 });
 
