@@ -16,7 +16,7 @@ export default function App() {
       <View style={styles.planesWrapper}>
         <ScrollView style={styles.ScrollView} persistentScrollbar={true}>
 
-          {/* Plane items */}
+          {/* Plane items (supports 6 planes currently)*/}
           <View style={styles.items}>
 
             <PlaneItem 
@@ -46,7 +46,7 @@ export default function App() {
             planeType="Boeing 737"
           />
 
-          <PlaneItem
+          {/* <PlaneItem
             imageUrl="https://e3.365dm.com/21/07/1600x900/skynews-boeing-737-plane_5435020.jpg?20210702173340"
             airline="United Airlines"
             flightNumber="UA123"
@@ -71,7 +71,7 @@ export default function App() {
             origin="SFO"
             destination="JFK"
             planeType="Boeing 737"
-          />
+          /> */}
 
           </View>
         </ScrollView>
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#C3C9E9',
     borderRadius: 10,
     padding: 10,
-    height: 1000,
+    height: 1060,
 
   },
 });
