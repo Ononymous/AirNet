@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color:'#ffffff',
         backgroundColor: '#373F47',
-        justifyContent:"space-between"
+        justifyContent:"space-between",
+        flexDirection: 'column',
     },
     AltitudeLangitudeLongitude:{
         fontWeight: 'bold',
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         color:'#ffffff',
         backgroundColor: '#373F47',
-        justifyContent:"space-between"
+
     },
     HEADER: {
         textAlign: 'center',
@@ -66,18 +67,23 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight : 'bold' 
       },
-      setColorRed : {
+    setColorRed : {
         color: '#f44336'
-      },
-      setColorPink :{
+    },
+    setColorPink :{
         color: '#e91e63'
-      },
-      setColorPurple :{
+    },
+    setColorPurple :{
         color: '#9c27b0'
-      },
-      setColorBlue :{
+    },
+    setColorBlue :{
         color: '#2196f3'
-      },
+    },
+    backBtn:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+    }
+      
       
 
 })

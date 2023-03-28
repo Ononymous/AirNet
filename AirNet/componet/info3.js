@@ -18,7 +18,7 @@ const FlightInfo3=({Altitude, Langitude, Longitude})=>{
         marginTop: 0,
         color:'#ffffff',
         backgroundColor: '#373F47'}}>
-            Longitude:{Longitude}
+            Longitude: {Longitude}
         </Text>
         <Text style={{
         fontWeight: 'bold',

@@ -3,7 +3,7 @@ import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import styles from "../Constant/infoStyles";
 import FlightInfo from "../componet/info";
-import { color } from "react-native-reanimated";
+import Button from "../componet/backButton";
 import FlightInfo3 from "../componet/info3";
 
 
@@ -28,13 +28,20 @@ const Info =({FlightNumber})=>{
                 <Text style={styles.HEADER}>LAX to SBA {'\n'}</Text>
             </View>
             <View style={styles.infoContainer}>
-                <FlightInfo3 Altitude={['123']}></FlightInfo3>
+                <FlightInfo3 Altitude={'123'} Longitude={'37.3679'} Langitude={'-121.73'}></FlightInfo3>
+            </View>
+            <View style={styles.infoContainer}>
+                <FlightInfo str='Aircraft Speed'/>
+                <Text style={styles.HEADER}>0 Knots</Text>
             </View>
 
 
         </View>
+       
     </ScrollView>
-
+        <View style={styles.backBtn}>
+            <Button/>
+        </View>
     
         
     </SafeAreaView>
