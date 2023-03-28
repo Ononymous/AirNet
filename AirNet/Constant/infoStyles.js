@@ -3,6 +3,7 @@ import {COLORS,SIZES} from './theme'
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
+        alignContent:'center',
         padding: 5,
         backgroundColor: '#D9D9D9',
         borderRadius: 10,
@@ -13,10 +14,12 @@ const styles = StyleSheet.create({
     },
     infoContainer:{
         flexDirection: 'column',
+        alignContent:'center',
         padding: 0,
-        backgroundColor: '#D9D9D9',
+        backgroundColor: '#2C4251',
         borderRadius: 10,
-        marginBottom: 10,
+        marginBottom: 5,
+        marginHorizontal:1,
         borderWidth: 5,
         borderColor: '#373F47',
     },
@@ -36,24 +39,14 @@ const styles = StyleSheet.create({
         color:'#ffffff',
         backgroundColor: '#373F47',
         textAlign:'left',
-        
-    
     },
-    infoContainerTitle3:{
-        fontWeight: 'bold',
-        fontSize: 15,
-        color:'#ffffff',
-        backgroundColor: '#373F47',
-        justifyContent:"space-between",
-        flexDirection: 'column',
-    },
-    AltitudeLangitudeLongitude:{
-        fontWeight: 'bold',
-        fontSize: 25,
-        marginTop: 0,
-        color:'#ffffff',
-        backgroundColor: '#373F47',
-
+    infoContainer3:{
+        flexDirection: 'row',
+        padding: 0,
+        backgroundColor: '#D9D9D9',
+        borderRadius: 10,
+        marginBottom: 0,
+        borderColor: '#373F47',
     },
     HEADER: {
         textAlign: 'center',

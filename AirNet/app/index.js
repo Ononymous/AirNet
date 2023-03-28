@@ -4,8 +4,6 @@ import { useState } from "react";
 import styles from "../Constant/infoStyles";
 import FlightInfo from "../componet/info";
 import Button from "../componet/backButton";
-import FlightInfo3 from "../componet/info3";
-
 
 
 const Info =({FlightNumber})=>{
@@ -27,15 +25,24 @@ const Info =({FlightNumber})=>{
                 <FlightInfo str='Route'/>
                 <Text style={styles.HEADER}>LAX to SBA {'\n'}</Text>
             </View>
-            <View style={styles.infoContainer}>
-                <FlightInfo3 Altitude={'123'} Longitude={'37.3679'} Langitude={'-121.73'}></FlightInfo3>
+            <View style={styles.infoContainer3}>
+                <View style={styles.infoContainer} width={121}>
+                    <FlightInfo str='Altitude'/>
+                    <Text style={styles.HEADER}>0 ft {'\n'}</Text>
+                </View>
+                <View style={styles.infoContainer} width={121}>
+                    <FlightInfo str='Langitude'/>
+                    <Text style={styles.HEADER}>37.3627 {'\n'}</Text>
+                </View>
+                <View style={styles.infoContainer} width={121}>
+                    <FlightInfo str='Longitude'/>
+                    <Text style={styles.HEADER}>-121.922 {'\n'}</Text>
+                </View>
             </View>
             <View style={styles.infoContainer}>
                 <FlightInfo str='Aircraft Speed'/>
-                <Text style={styles.HEADER}>0 Knots</Text>
+                <Text style={styles.HEADER}>0 Knots {'\n'}</Text>
             </View>
-
-
         </View>
        
     </ScrollView>
