@@ -49,7 +49,11 @@ const styles = StyleSheet.create({
         borderColor: '#373F47',
         justifyContent:"space-evenly"
     },
-    HEADER: {
+    HEADERVIEW:{
+        justifyContent:'space-evenly',
+        flexDirection: 'row',
+    },
+    BiggerText: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 25,

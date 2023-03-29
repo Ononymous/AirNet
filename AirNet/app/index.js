@@ -4,26 +4,33 @@ import { useState } from "react";
 import styles from "../Constant/infoStyles";
 import FlightInfo from "../componet/info";
 import Button from "../componet/backButton";
+import HeartButton from "../componet/heartButton";
+import CameraButton from "../componet/cameraButton";
 
 
 const Info =({FlightNumber})=>{
     const router=useRouter();
     return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#373F47'}}>
-
-    <Text style={styles.HEADER}>SWA2434</Text>
+    <View style={styles.HEADERVIEW}>
+        <CameraButton onPress={() => alert("Camera pressed")}/> 
+        <Text style={styles.BiggerText}>SWA2434</Text>
+        <HeartButton onPress={() => alert("Heart pressed")}/>
+        
+    </View>
+        
     <ScrollView>
         <View style={styles.container}>
             <Image source={{ uri: 'https://media.wired.com/photos/62b25f4c18e6fafaa97a6477/16:9/w_2400,h_1350,c_limit/Air-Serbia-Plane-Russian-Sanctions-Safety-Hazard-Business-1239498184.jpg' }} style={styles.image} />
             
             <View style={styles.infoContainer}>
                 <FlightInfo str='Aircraft Type'/>
-                <Text style={styles.HEADER}>Boeing 737 MAX 8 {'\n'}</Text>
+                <Text style={styles.BiggerText}>Boeing 737 MAX 8 {'\n'}</Text>
             </View>
 
             <View style={styles.infoContainer}>
                 <FlightInfo str='Route'/>
-                <Text style={styles.HEADER}>LAX to SBA {'\n'}</Text>
+                <Text style={styles.BiggerText}>LAX to SBA {'\n'}</Text>
             </View>
             <View style={styles.infoContainer3}>
                 <View style={styles.infoContainer} width={121}>
@@ -41,7 +48,7 @@ const Info =({FlightNumber})=>{
             </View>
             <View style={styles.infoContainer}>
                 <FlightInfo str='Aircraft Speed'/>
-                <Text style={styles.HEADER}>0 Knots {'\n'}</Text>
+                <Text style={styles.BiggerText}>0 Knots {'\n'}</Text>
             </View>
         </View>
        
