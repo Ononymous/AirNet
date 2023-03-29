@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginBottom: 0,
         borderColor: '#373F47',
+        justifyContent:"space-evenly"
     },
     HEADER: {
         textAlign: 'center',
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         color:'#ffffff',
         backgroundColor: '#373F47',
+        
     },
     setFontSize: {
         fontSize: 20,
