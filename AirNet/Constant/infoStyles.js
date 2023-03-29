@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#2C4251',
         borderRadius: 10,
         marginBottom: 5,
-        marginHorizontal:1,
+        marginHorizontal:2,
         borderWidth: 5,
         borderColor: '#373F47',
     },
     image: {
-        width: 360,
+        width: 300,
         height: 150,
         marginRight: 16,
         borderRadius: 10,
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 0,
         backgroundColor: '#D9D9D9',
-        borderRadius: 10,
         marginBottom: 0,
         borderColor: '#373F47',
         justifyContent:"space-evenly"
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
     NUM:{
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 17,
         marginTop: 0,
         color:'#ffffff',
         backgroundColor: '#373F47',
