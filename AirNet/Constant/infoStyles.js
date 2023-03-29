@@ -56,6 +56,14 @@ const styles = StyleSheet.create({
         color:'#ffffff',
         backgroundColor: '#373F47',
     },
+    NUM:{
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginTop: 0,
+        color:'#ffffff',
+        backgroundColor: '#373F47',
+    },
     setFontSize: {
         fontSize: 20,
         fontWeight : 'bold' 

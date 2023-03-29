@@ -28,15 +28,15 @@ const Info =({FlightNumber})=>{
             <View style={styles.infoContainer3}>
                 <View style={styles.infoContainer} width={121}>
                     <FlightInfo str='Altitude'/>
-                    <Text style={styles.HEADER}>0 ft {'\n'}</Text>
+                    <Text style={styles.NUM}>0 ft {'\n'}</Text>
                 </View>
                 <View style={styles.infoContainer} width={121}>
                     <FlightInfo str='Langitude'/>
-                    <Text style={styles.HEADER}>37.3627 {'\n'}</Text>
+                    <Text style={styles.NUM}>37.3627 {'\n'}</Text>
                 </View>
                 <View style={styles.infoContainer} width={121}>
                     <FlightInfo str='Longitude'/>
-                    <Text style={styles.HEADER}>-121.922 {'\n'}</Text>
+                    <Text style={styles.NUM}>-121.922 {'\n'}</Text>
                 </View>
             </View>
             <View style={styles.infoContainer}>
