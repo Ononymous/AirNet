@@ -1,12 +1,24 @@
-import { ScrollView, Button, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Button, StyleSheet, Text, View, RefreshControl, Modal } from 'react-native';
 import PlaneItem from './components/planeItem';
-import RefreshButton from './components/refreshButton';
+// import RefreshButton from './components/refreshButton';
+import { useState } from 'react';
 
 //make to do list app that shows planes that are flying nearby
 export default function App() {
+  const [refreshing, setRefreshing] = useState(false);
+  const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   return (
     <View style={styles.container}> 
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={moreInfoVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setMoreInfoVisible(!moreInfoVisible);
+        }}>
 
+      </Modal>
       {/* Title and settings area*/}
       <View style={styles.titleWrapper}>
         <Text style={styles.sectionTitle}>Nearby Planes</Text>
@@ -14,10 +26,17 @@ export default function App() {
       </View>
 
       <View style={styles.planesWrapper}>
-        <ScrollView style={styles.ScrollView} persistentScrollbar={true}>
+        {/* pull down to refresh */}
+        <ScrollView style={styles.ScrollView} persistentScrollbar={true} 
+          refreshControl={<RefreshControl refreshing={refreshing} 
+            onRefresh={() => {
+              setRefreshing(true); 
+              alert("Refresh triggered"); 
+              setRefreshing(false)
+        }} />}>
 
           {/* Plane items (supports 6 planes currently)*/}
-          <View style={styles.items}>
+          <View style={styles.items} >
 
             <PlaneItem 
             imageUrl={"https://media.wired.com/photos/62b25f4c18e6fafaa97a6477/16:9/w_2400,h_1350,c_limit/Air-Serbia-Plane-Russian-Sanctions-Safety-Hazard-Business-1239498184.jpg"}
@@ -54,8 +73,8 @@ export default function App() {
             destination="JFK"
             planeType="Boeing 737"
           />
-          {/*
-          <PlaneItem
+          
+          {/* <PlaneItem
             imageUrl="https://e3.365dm.com/21/07/1600x900/skynews-boeing-737-plane_5435020.jpg?20210702173340"
             airline="United Airlines"
             flightNumber="UA123"
@@ -76,31 +95,32 @@ export default function App() {
           </View>
         </ScrollView>
       </View>
-
+      
+      {/* refresh button is now in the scrollview
       <View style={styles.refreshRow}>
         <RefreshButton onPress={() => alert("Refresh button pressed")}/>
-      </View>
+      </View> */}
 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  refreshRow: {
-    flexDirection: 'row',
-    //put to center
-    justifyContent: 'center',
-  },
+  // refreshRow: {
+  //   flexDirection: 'row',
+  //   //put to center
+  //   justifyContent: 'center',
+  // },
 
   ScrollView: {
     backgroundColor: '#C3C9E9',
     borderRadius: 10,
-    height: 600,
   },
 
   container: {
     flex: 1,
     backgroundColor: '#373F47',
+    height: '100%',
     
   },
 
@@ -110,11 +130,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingTop: 60,
+    height: '12%',
   },  
 
   planesWrapper: {
     paddingTop: 20,
     paddingHorizontal: 10,
+    borderRadius: 10,
+    height: '87%',
   },
 
   sectionTitle: {
@@ -126,7 +149,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#C3C9E9',
     borderRadius: 10,
     padding: 10,
-    height: 1060,
-
   },
 });
