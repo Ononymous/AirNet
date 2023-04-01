@@ -1,12 +1,11 @@
 import { SafeAreaView , ScrollView,View,Text,Image} from "react-native";
-import { Stack, useRouter ,Link} from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { useState } from "react";
 import styles from "../Constant/infoStyles";
 import FlightInfo from "../componet/info";
 import Button from "../componet/backButton";
 import HeartButton from "../componet/heartButton";
 import CameraButton from "../componet/cameraButton";
-import SettingButton from "../componet/settingButton";
 
 
 const Info =({FlightNumber})=>{
@@ -14,18 +13,9 @@ const Info =({FlightNumber})=>{
     return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#373F47'}}>
     <View style={styles.HEADERVIEW}>
-        <Text style={styles.BiggerText}>SWA2434</Text>
-    </View>
-    <View style={styles.HEADERVIEW}>
         <CameraButton onPress={() => alert("Camera pressed")}/> 
-  
+        <Text style={styles.BiggerText}>SWA2434</Text>
         <HeartButton onPress={() => alert("Heart pressed")}/>
-        <Link href={'setting.js'}>
-            <SettingButton />
-        </Link>
-      
-
-
     </View>    
     <ScrollView>
         <View style={styles.container}>
