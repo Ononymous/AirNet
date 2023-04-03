@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import { SIZES, COLORS } from '../theme';
-import CameraButton from '../components/CameraButton';
-import HeartButton from '../components/HeartButton';
-import FlightInfo from '../components/Info';
-import BackButton from '../components/BackButton';
+import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
+import CameraButton from './CameraButton';
+import HeartButton from './HeartButton';
+import FlightInfo from './FlightInfo';
+import BackButton from './BackButton';
 
 export default function MoreInfo({setMoreInfoVisible}) {
   return (
@@ -82,19 +81,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#2C4251',
     borderRadius: 10,
     marginBottom: 5,
-    marginHorizontal:2,
+    marginHorizontal:4,
     borderWidth: 5,
     borderColor: '#373F47',
   },
   image: {
-    width: 300,
+    width: Dimensions.get('window').width - 28,
     height: 150,
-    marginRight: 16,
     borderRadius: 10,
     resizeMode: 'cover',
-    borderWidth: 5,
-    borderColor: '#373F47',
-    alignSelf:'center'
+    alignSelf:'center',
+    marginBottom: 5,
   },
   infoContainer3:{
     flexDirection: 'row',
@@ -107,6 +104,7 @@ const styles = StyleSheet.create({
   HEADERVIEW:{
     justifyContent:'space-evenly',
     flexDirection: 'row',
+    height: 50,
   },
   BiggerText: {
     textAlign: 'center',
