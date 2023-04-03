@@ -1,4 +1,4 @@
-import { ScrollView, Button, StyleSheet, Text, View, RefreshControl, Dimensions, Modal } from 'react-native';
+import { ScrollView, Button, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Platform, StatusBar } from 'react-native';
 import PlaneItem from './components/PlaneItem';
 import { useState } from 'react';
 import MoreInfo from './tabs/MoreInfo';
@@ -25,10 +25,9 @@ export default function App() {
       {/* Title and settings area*/}
       <View style={styles.titleWrapper}>
         <Text style={styles.sectionTitle}>Nearby Planes</Text>
-        <Text style={styles.title}>{"Here: "+ moreInfoVisible}</Text>
         <SettingButton onPress={() => alert('Settings button pressed!')} />
       </View>
-      <Button title="More Info" onPress={() => setMoreInfoVisible(!moreInfoVisible)} />
+      {/* <Button title="More Info" onPress={() => setMoreInfoVisible(!moreInfoVisible)} /> */}
 
       {/* Planes list area */}
       <View style={styles.planesWrapper}>
@@ -51,6 +50,7 @@ export default function App() {
             origin="LAX"
             destination={"SBA"}
             planeType={"Boeing 737"}
+            setMoreInfoVisible={setMoreInfoVisible}
             /> 
           
           <PlaneItem
@@ -60,6 +60,7 @@ export default function App() {
             origin="SFO"
             destination="JFK"
             planeType="Boeing 737"
+            setMoreInfoVisible={setMoreInfoVisible}
           />
 
           <PlaneItem
@@ -69,6 +70,7 @@ export default function App() {
             origin="SFO"
             destination="JFK"
             planeType="Boeing 737"
+            setMoreInfoVisible={setMoreInfoVisible}
           />
 
           <PlaneItem
@@ -78,6 +80,7 @@ export default function App() {
             origin="SFO"
             destination="JFK"
             planeType="Boeing 737"
+            setMoreInfoVisible={setMoreInfoVisible}
           />
           
           {/* <PlaneItem
@@ -87,6 +90,7 @@ export default function App() {
             origin="SFO"
             destination="JFK"
             planeType="Boeing 737"
+            setMoreInfoVisible={setMoreInfoVisible}
           />
 
           <PlaneItem
@@ -96,6 +100,7 @@ export default function App() {
             origin="SFO"
             destination="JFK"
             planeType="Boeing 737"
+            setMoreInfoVisible={setMoreInfoVisible}
           /> */}
 
           </View>
@@ -118,6 +123,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#373F47',
     height: '100%',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 
   },
 
   titleWrapper: {

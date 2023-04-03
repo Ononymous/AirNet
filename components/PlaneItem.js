@@ -4,7 +4,7 @@ import CameraButton from './CameraButton';
 import HeartButton from './HeartButton';
 import MoreInfoButton from './MoreInfoButton';
 
-const PlaneItem = ({ imageUrl, airline, flightNumber, origin, destination, planeType }) => {
+const PlaneItem = ({ imageUrl, airline, flightNumber, origin, destination, planeType, setMoreInfoVisible }) => {
   return (
       <View style={styles.container}>
         {/* Upper container */}
@@ -22,7 +22,7 @@ const PlaneItem = ({ imageUrl, airline, flightNumber, origin, destination, plane
         <View style={styles.lowerContainer}>
           <CameraButton onPress={() => alert("Camera pressed")}/> 
           <HeartButton onPress={() => alert("Heart pressed")}/>
-          <MoreInfoButton />
+          <MoreInfoButton onPress={() => setMoreInfoVisible(true)}/>
         </View>
 
       </View>
