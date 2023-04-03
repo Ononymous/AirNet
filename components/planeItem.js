@@ -1,8 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, View, Image, Text, Button } from 'react-native';
+import { StyleSheet, View, Image, Text } from 'react-native';
 import CameraButton from './CameraButton';
 import HeartButton from './HeartButton';
-import MoreInfoButton from './moreInfoButton';
+import MoreInfoButton from './MoreInfoButton';
 
 const PlaneItem = ({ imageUrl, airline, flightNumber, origin, destination, planeType }) => {
   return (

@@ -1,30 +1,36 @@
-import { ScrollView, Button, StyleSheet, Text, View, RefreshControl, Modal } from 'react-native';
-import PlaneItem from './components/planeItem';
-// import RefreshButton from './components/refreshButton';
+import { ScrollView, Button, StyleSheet, Text, View, RefreshControl, Dimensions, Modal } from 'react-native';
+import PlaneItem from './components/PlaneItem';
 import { useState } from 'react';
+import MoreInfo from './tabs/MoreInfo';
+import SettingButton from './components/SettingButton';
 
 //make to do list app that shows planes that are flying nearby
 export default function App() {
   const [refreshing, setRefreshing] = useState(false);
   const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   return (
-    <View style={styles.container}> 
+    <View style={styles.container}>
+      {/* Modal for more info */}
       <Modal
-        animationType="slide"
-        transparent={true}
-        visible={moreInfoVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setMoreInfoVisible(!moreInfoVisible);
-        }}>
-
+      animationType="slide"
+      transparent={true}
+      visible={moreInfoVisible}
+      onRequestClose={() => {
+        Alert.alert('Modal has been closed.');
+        setMoreInfoVisible(!moreInfoVisible);
+      }}>
+        <MoreInfo setMoreInfoVisible={setMoreInfoVisible} />
       </Modal>
+
       {/* Title and settings area*/}
       <View style={styles.titleWrapper}>
         <Text style={styles.sectionTitle}>Nearby Planes</Text>
-        <Button title="Settings" onPress={() => alert('Settings button pressed!')} />
+        <Text style={styles.title}>{"Here: "+ moreInfoVisible}</Text>
+        <SettingButton onPress={() => alert('Settings button pressed!')} />
       </View>
+      <Button title="More Info" onPress={() => setMoreInfoVisible(!moreInfoVisible)} />
 
+      {/* Planes list area */}
       <View style={styles.planesWrapper}>
         {/* pull down to refresh */}
         <ScrollView style={styles.ScrollView} persistentScrollbar={true} 
@@ -95,23 +101,14 @@ export default function App() {
           </View>
         </ScrollView>
       </View>
-      
-      {/* refresh button is now in the scrollview
-      <View style={styles.refreshRow}>
-        <RefreshButton onPress={() => alert("Refresh button pressed")}/>
-      </View> */}
 
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  // refreshRow: {
-  //   flexDirection: 'row',
-  //   //put to center
-  //   justifyContent: 'center',
-  // },
+const TitleHeight = 60;
 
+const styles = StyleSheet.create({
   ScrollView: {
     backgroundColor: '#C3C9E9',
     borderRadius: 10,
@@ -121,7 +118,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#373F47',
     height: '100%',
-    
   },
 
   titleWrapper: {
@@ -129,15 +125,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 10,
-    paddingTop: 60,
-    height: '12%',
+    height: TitleHeight,
   },  
 
   planesWrapper: {
-    paddingTop: 20,
+    paddingTop: 10,
     paddingHorizontal: 10,
-    borderRadius: 10,
-    height: '87%',
+    paddingBottom: 10,
+    // borderRadius: 10,
+    height: Dimensions.get('window').height - TitleHeight,
   },
 
   sectionTitle: {
