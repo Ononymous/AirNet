@@ -1,34 +1,15 @@
 import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Alert } from 'react-native';
 import PlaneItem from '../components/PlaneItem';
 import { useState } from 'react';
-import MoreInfo from '../components/MoreInfo';
+import MoreInfo from './MoreInfo';
 import SettingButton from '../components/SettingButton';
 
 //make to do list app that shows planes that are flying nearby
-export default function PlaneList() {
+export default function PlaneList({navigation}) {
   const [refreshing, setRefreshing] = useState(false);
-  const [moreInfoVisible, setMoreInfoVisible] = useState(false);
   return (
     <View style={styles.container}>
-      {/* Modal for more info */}
-      <Modal
-      animationType="slide"
-      transparent={true}
-      visible={moreInfoVisible}
-      onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
-        setMoreInfoVisible(!moreInfoVisible);
-      }}>
-        <MoreInfo setMoreInfoVisible={setMoreInfoVisible} />
-      </Modal>
-
-      {/* Title and settings area*/}
-      <View style={styles.titleWrapper}>
-        <Text style={styles.sectionTitle}>Nearby Planes</Text>
-        <SettingButton onPress={() => alert('Settings button pressed!')} />
-      </View>
-      {/* <Button title="More Info" onPress={() => setMoreInfoVisible(!moreInfoVisible)} /> */}
-
+      
       {/* Planes list area */}
       <View style={styles.planesWrapper}>
         {/* pull down to refresh */}
@@ -50,7 +31,7 @@ export default function PlaneList() {
             origin="LAX"
             destination={"SBA"}
             planeType={"Boeing 737"}
-            setMoreInfoVisible={setMoreInfoVisible}
+            navigation={navigation}
             /> 
           
           <PlaneItem
@@ -60,7 +41,7 @@ export default function PlaneList() {
             origin="SFO"
             destination="JFK"
             planeType="Boeing 737"
-            setMoreInfoVisible={setMoreInfoVisible}
+            navigation={navigation}
           />
 
           <PlaneItem
@@ -70,7 +51,7 @@ export default function PlaneList() {
             origin="SFO"
             destination="JFK"
             planeType="Boeing 737"
-            setMoreInfoVisible={setMoreInfoVisible}
+            navigation={navigation}
           />
 
           <PlaneItem
@@ -80,7 +61,7 @@ export default function PlaneList() {
             origin="SFO"
             destination="JFK"
             planeType="Boeing 737"
-            setMoreInfoVisible={setMoreInfoVisible}
+            navigation={navigation}
           />
           
           {/* <PlaneItem

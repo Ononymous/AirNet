@@ -1,21 +1,15 @@
-import { SafeAreaView , ScrollView,View,Text,Image,TextInput,TouchableOpacity,Switch} from "react-native";
-import { useRouter } from "expo-router";
-import Button from "../componet/BackButton";
-import { Ionicons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import SearchBar from "../componet/seachBar";
-import SignOutButton from "../componet/signOutBtn";
+import { SafeAreaView, ScrollView, View, Text, Image, TouchableOpacity, StyleSheet, Switch } from "react-native";
+import BackButton from "../components/BackButton";
+import { FontAwesome5, AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
+import SearchBar from "../components/SearchBar";
+import SignOutButton from "../components/SignOutButton";
+import { COLORS } from "../theme";
 
 
 
-export default function setting(searchTerm,setSearchTerm,handleClick) {
+export default function Setting(searchTerm,setSearchTerm,handleClick) {
   return(
-    <SafeAreaView style={{flex: 1, backgroundColor: '#373F47'}}>
-      <View style={styles.HEADERVIEW}>
-        <Text style={styles.BiggerText}>Settings</Text>
-      </View>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#373F47', padding: 10, paddingBottom: 20}}>
       <ScrollView>
         <SearchBar/>
         <View style={styles.settingContainer}>
@@ -61,7 +55,7 @@ export default function setting(searchTerm,setSearchTerm,handleClick) {
 
       </ScrollView>
       <View style={styles.signOutBtn}>
-        <SignOutButton/>
+        <SignOutButton onPress={() => alert("Sign Out pressed")}/>
       </View> 
 
     </SafeAreaView>

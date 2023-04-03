@@ -1,19 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
-import CameraButton from './CameraButton';
-import HeartButton from './HeartButton';
-import FlightInfo from './FlightInfo';
-import BackButton from './BackButton';
+import CameraButton from '../components/CameraButton';
+import HeartButton from '../components/HeartButton';
+import FlightInfo from '../components/FlightInfo';
+import BackButton from '../components/BackButton';
 
 export default function MoreInfo({setMoreInfoVisible}) {
   return (
     <View style={styles.newContainer}>
-      <View style={styles.HEADERVIEW}>
-        <BackButton onPress={() => setMoreInfoVisible(false)}/>
-        <Text style={styles.BiggerText}>SWA2434</Text>
-        <HeartButton onPress={() => alert("Heart pressed")}/>
-        <CameraButton onPress={() => alert("Camera pressed")}/> 
-      </View>    
       <ScrollView>
         <View style={styles.container}>
           <Image source={{ uri: 'https://media.wired.com/photos/62b25f4c18e6fafaa97a6477/16:9/w_2400,h_1350,c_limit/Air-Serbia-Plane-Russian-Sanctions-Safety-Hazard-Business-1239498184.jpg' }} style={styles.image} />

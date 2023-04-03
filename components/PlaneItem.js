@@ -4,7 +4,7 @@ import CameraButton from './CameraButton';
 import HeartButton from './HeartButton';
 import MoreInfoButton from './MoreInfoButton';
 
-const PlaneItem = ({ imageUrl, airline, flightNumber, origin, destination, planeType, setMoreInfoVisible }) => {
+export default function PlaneItem ({ imageUrl, airline, flightNumber, origin, destination, planeType, navigation }) {
   return (
       <View style={styles.container}>
         {/* Upper container */}
@@ -22,7 +22,7 @@ const PlaneItem = ({ imageUrl, airline, flightNumber, origin, destination, plane
         <View style={styles.lowerContainer}>
           <CameraButton onPress={() => alert("Camera pressed")}/> 
           <HeartButton onPress={() => alert("Heart pressed")}/>
-          <MoreInfoButton onPress={() => setMoreInfoVisible(true)}/>
+          <MoreInfoButton onPress={() => navigation.navigate("MoreInfo")}/>
         </View>
 
       </View>
@@ -76,5 +76,3 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
-
-export default PlaneItem;
