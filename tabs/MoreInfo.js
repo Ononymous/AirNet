@@ -1,24 +1,29 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
-import CameraButton from '../components/CameraButton';
-import HeartButton from '../components/HeartButton';
 import FlightInfo from '../components/FlightInfo';
-import BackButton from '../components/BackButton';
+import { useEffect } from 'react';
 
-export default function MoreInfo({setMoreInfoVisible}) {
+export default function MoreInfo({route, navigation}) {
+  const { plane } = route.params;
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: `${plane.flightNumber}`,
+    });
+  }, [navigation, plane.flightNumber]);
+  
   return (
     <View style={styles.newContainer}>
       <ScrollView>
         <View style={styles.container}>
-          <Image source={{ uri: 'https://media.wired.com/photos/62b25f4c18e6fafaa97a6477/16:9/w_2400,h_1350,c_limit/Air-Serbia-Plane-Russian-Sanctions-Safety-Hazard-Business-1239498184.jpg' }} style={styles.image} />
+          <Image source={{ uri: plane.imgUrl }} style={styles.image} />
           <View style={styles.infoContainer}>
             <FlightInfo str='Aircraft Type'/>
-            <Text style={styles.BiggerText}>Boeing 737 MAX 8 {'\n'}</Text>
+            <Text style={styles.BiggerText}>{plane.planeType + '\n'}</Text>
           </View>
-
           <View style={styles.infoContainer}>
             <FlightInfo str='Route'/>
-            <Text style={styles.BiggerText}>LAX to SBA {'\n'}</Text>
+            <Text style={styles.BiggerText}>{plane.origin} to {plane.destination + '\n'}</Text>
           </View>
           <View style={styles.infoContainer}>
             <FlightInfo str='Scheduled Arrival Time '/>

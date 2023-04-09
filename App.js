@@ -51,7 +51,6 @@ export default function App() {
             ),
           })}/>
           <Stack.Screen name="MoreInfo" component={MoreInfo} options={({ navigation }) => ({
-            title: 'SWA2434',
             headerStyle: {
               height: TitleHeight,
               backgroundColor: '#373F47',
@@ -77,7 +76,7 @@ export default function App() {
   );
 }
 
-const TitleHeight = 60;
+const TitleHeight = 100;
 
 const styles = StyleSheet.create({
   container: {

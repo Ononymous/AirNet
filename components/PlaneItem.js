@@ -4,17 +4,17 @@ import CameraButton from './CameraButton';
 import HeartButton from './HeartButton';
 import MoreInfoButton from './MoreInfoButton';
 
-export default function PlaneItem ({ imageUrl, airline, flightNumber, origin, destination, planeType, navigation }) {
+export default function PlaneItem ({ plane, navigation }) {
   return (
       <View style={styles.container}>
         {/* Upper container */}
         <View style={styles.upperContainer}>
-          <Image source={{ uri: imageUrl }} style={styles.image} />
+          <Image source={{ uri: plane.imgUrl }} style={styles.image} />
           <View style={styles.textContainer}>
-            <Text style={styles.airline}>{airline}</Text>
-            <Text style={styles.flightNumber}>{flightNumber}</Text>
-            <Text style={styles.flightPath}>{origin} to {destination}</Text>
-            <Text style={styles.planeType}>{planeType}</Text>
+            <Text style={styles.airline}>{plane.airline}</Text>
+            <Text style={styles.flightNumber}>{plane.flightNumber}</Text>
+            <Text style={styles.flightPath}>{plane.origin} to {plane.destination}</Text>
+            <Text style={styles.planeType}>{plane.planeType}</Text>
           </View>
         </View>
 
@@ -22,7 +22,7 @@ export default function PlaneItem ({ imageUrl, airline, flightNumber, origin, de
         <View style={styles.lowerContainer}>
           <CameraButton onPress={() => alert("Camera pressed")}/> 
           <HeartButton onPress={() => alert("Heart pressed")}/>
-          <MoreInfoButton onPress={() => navigation.navigate("MoreInfo")}/>
+          <MoreInfoButton onPress={() => navigation.navigate("MoreInfo", {plane: plane})}/>
         </View>
 
       </View>
