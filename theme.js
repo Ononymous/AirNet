@@ -49,4 +49,3 @@ const COLORS = {
   };
   
   export { COLORS, FONT, SIZES, SHADOWS };
-  

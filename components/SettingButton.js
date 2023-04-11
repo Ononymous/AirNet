@@ -2,10 +2,10 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const CameraButton = ({ onPress }) => {
+const SettingButton = ({ onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Ionicons name="camera" size={24} color="white" />
+      <Ionicons name="settings-outline" size={24} color="white" />
     </TouchableOpacity>
   );
 };
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CameraButton;
+export default SettingButton;

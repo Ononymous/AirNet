@@ -1,11 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
-const Button = ({ onPress }) => {
+const MoreInfoButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Text style={styles.buttonText}>Back</Text>
+      <Text style={styles.buttonText}>More Info</Text>
     </TouchableOpacity>
   );
 };
@@ -16,8 +15,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 150,
     padding: 10,
-    marginTop: 10,
-    marginLeft: 10,
+    marginLeft: 60,
+    borderWidth: 5,
+    borderColor: '#373F47',
   },
   buttonText: {
     color: '#FFFFFF',
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Button;
+export default MoreInfoButton;
