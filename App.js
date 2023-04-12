@@ -67,7 +67,7 @@ export default function App() {
             ),
             headerRight: () => (
               <View style={styles.lowerContainer}>
-                <HeartButton onPress={() => alert("Added to My Favorite!")}/>
+                <HeartButton/>
                 <CameraButton onPress={() => alert("Camera pressed")}/> 
               </View>
             ),

@@ -1,15 +1,13 @@
 import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Alert } from 'react-native';
 import PlaneItem from '../components/PlaneItem';
 import { useState } from 'react';
-import MoreInfo from './MoreInfo';
-import SettingButton from '../components/SettingButton';
-import SampleData from '../SampleData';
+import { useFavoritePlanes } from '../components/MyFavoritePlanes';
 
 //make to do list app that shows planes that are flying nearby
 export default function MyFavorite({navigation}) {
+  const [favoritePlanes] = useFavoritePlanes();
   const [refreshing, setRefreshing] = useState(false);
-  const [favoriteItems,setFavoriateItems]=useState('')
-  const ListOfPlanes = SampleData.map((plane, index) => {
+  const ListOfPlanes = favoritePlanes.map((plane, index) => {
     return(
       <PlaneItem 
       key={index}

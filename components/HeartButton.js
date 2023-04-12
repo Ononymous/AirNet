@@ -1,11 +1,28 @@
-import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
 
-const HeartButton = ({ onPress }) => {
+import { useState } from 'react';
+import { TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
+import useFavoritePlanes from './MyFavoritePlanes';
+
+const HeartButton = ({favoritePlane}) => {
+  const [heartIcon, setHeartIcon] = useState('hearto');
+  const [favorite,setFavorite]=useState(false);
+  const [,addFavoritePlane, removeFavoritePlane] = useFavoritePlanes();
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <AntDesign name="hearto" size={27} color="white" />
+    <TouchableOpacity style={styles.button} onPress={()=>{
+      if(!favorite){
+        setHeartIcon('heart')
+        setFavorite(true)
+        addFavoritePlane(favoritePlane);
+        Alert.alert('This plane has been added to my favorites!')
+      }else{
+        setHeartIcon('hearto')
+        setFavorite(false)
+        removeFavoritePlane(favoritePlane)
+        Alert.alert('This plane has been removed from my favorites!')
+      }
+    }}>
+      <AntDesign name={heartIcon} size={27} color="white" />
     </TouchableOpacity>
   );
 };
