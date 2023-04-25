@@ -5,7 +5,7 @@ import { useFavoritePlanes } from '../components/MyFavoritePlanes';
 
 //make to do list app that shows planes that are flying nearby
 export default function MyFavorite({navigation}) {
-  const [favoritePlanes] = useFavoritePlanes();
+  const favoritePlanes = useFavoritePlanes()[0];
   const [refreshing, setRefreshing] = useState(false);
   const ListOfPlanes = favoritePlanes.map((plane, index) => {
     return(

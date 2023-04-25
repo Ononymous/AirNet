@@ -14,4 +14,5 @@ const useFavoritePlanes = () => {
   return [favoritePlanes, addFavoritePlane, removeFavoritePlane];
 };
 
+
 export default useFavoritePlanes;
