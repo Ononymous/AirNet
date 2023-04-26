@@ -12,7 +12,7 @@ export default function Setting({navigation}) {
   return(
     <SafeAreaView style={{flex: 1, backgroundColor: '#373F47', padding: 10, paddingBottom: 20}}>
       <ScrollView>
-        <SearchBar/>
+        {/* <SearchBar/> */}
         <View style={styles.settingContainer}>
           <Image source={require('../assets/802043_man_512x512.png')} style={styles.profileImage}></Image>
           <Text style={styles.userName}>User 123</Text>
@@ -42,7 +42,7 @@ export default function Setting({navigation}) {
 
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigation.navigate('About')}>
             <View  style={styles.settingTab} >
               <View style={styles.settingTab}>
                 <AntDesign name="infocirlceo" size={24} color="black" />

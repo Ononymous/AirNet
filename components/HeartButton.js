@@ -7,18 +7,18 @@ import useFavoritePlanes from './MyFavoritePlanes';
 const HeartButton = ({favoritePlane}) => {
   const [heartIcon, setHeartIcon] = useState('hearto');
   const [favorite,setFavorite]=useState(false);
-  const [avoritePlanes,addFavoritePlane, removeFavoritePlane] = useFavoritePlanes();
+  // const [avoritePlanes,addFavoritePlane, removeFavoritePlane] = useFavoritePlanes();
   return (
     <TouchableOpacity style={styles.button} onPress={()=>{
       if(!favorite){
         setHeartIcon('heart')
         setFavorite(true)
-        addFavoritePlane(favoritePlane);
+        // addFavoritePlane(favoritePlane);
         Alert.alert('This plane has been added to my favorites!')
       }else{
         setHeartIcon('hearto')
         setFavorite(false)
-        removeFavoritePlane(favoritePlane)
+        // removeFavoritePlane(favoritePlane)
         Alert.alert('This plane has been removed from my favorites!')
       }
     }}>
