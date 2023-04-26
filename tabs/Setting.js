@@ -1,37 +1,45 @@
+import React, { useContext } from 'react';
 import { SafeAreaView, ScrollView, View, Text, Image, TouchableOpacity, StyleSheet, Switch } from "react-native";
-import BackButton from "../components/BackButton";
 import { FontAwesome5, AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
-import SearchBar from "../components/SearchBar";
+
 import SignOutButton from "../components/SignOutButton";
-import { COLORS } from "../theme";
+import SignInButton from "../components/SignInButton";
+
+import { supabase } from "../backend/supabase";
+import SessionContext from "../backend/SessionContext";
 import 'react-native-gesture-handler';
 
-
-
 export default function Setting({navigation}) {
+
+  const session = useContext(SessionContext);
+
   return(
     <SafeAreaView style={{flex: 1, backgroundColor: '#373F47', padding: 10, paddingBottom: 20}}>
       <ScrollView>
         {/* <SearchBar/> */}
         <View style={styles.settingContainer}>
-          <Image source={require('../assets/802043_man_512x512.png')} style={styles.profileImage}></Image>
-          <Text style={styles.userName}>User 123</Text>
+          {session && session.user && <>
+            <TouchableOpacity onPress={()=>navigation.navigate('User')}>
+              <Image source={require('../assets/802043_man_512x512.png')} style={styles.profileImage}/>
+            </TouchableOpacity>
+            <Text style={styles.userName}>{session?.user?.email}</Text>
+          </>}
           <View  style={styles.settingTab} >
               <View style={styles.settingTab}>
                 <Ionicons name='notifications-outline' size={24} color="black" />
                 <Text style={styles.settingTabText}> Notifications</Text>
               </View>
               <Switch style={styles.switchStyle}/>
-
           </View>
+
           <View  style={styles.settingTab} >
               <View style={styles.settingTab}>
                 <MaterialIcons name="gps-fixed" size={24} color="black" />
                 <Text style={styles.settingTabText}> GPS</Text>
               </View>
               <Switch style={styles.switchStyle}/>
-
           </View>
+
           <TouchableOpacity onPress={()=>navigation.navigate('MyFavorite')}>
             <View  style={styles.settingTab} >
               <View style={styles.settingTab}>
@@ -39,9 +47,9 @@ export default function Setting({navigation}) {
                 <Text style={styles.settingTabText}> Manage My Favorites</Text>
               </View>
               <AntDesign name="right" size={24} color="black" style={styles.settingIcons}/>
-
             </View>
           </TouchableOpacity>
+
           <TouchableOpacity onPress={()=>navigation.navigate('About')}>
             <View  style={styles.settingTab} >
               <View style={styles.settingTab}>
@@ -49,14 +57,14 @@ export default function Setting({navigation}) {
                 <Text style={styles.settingTabText}> About</Text>
               </View>
               <AntDesign name="right" size={24} color="black" style={styles.settingIcons}/>
-
             </View>
           </TouchableOpacity>
+          
         </View>
-
       </ScrollView>
+
       <View style={styles.signOutBtn}>
-        <SignOutButton onPress={() => alert("Sign Out pressed")}/>
+        {session && session.user ? <SignOutButton onPress={() => supabase.auth.signOut()}/> : <SignInButton onPress={() => navigation.navigate('User')}/>}
       </View> 
 
     </SafeAreaView>
@@ -96,12 +104,12 @@ const styles = StyleSheet.create({
 
   },
   profileImage:{
-     width: 100, 
-     height: 100, 
-     borderRadius: 400/ 2,
-     alignSelf:'center',
-     marginTop:10
-
+    width: 100, 
+    height: 100, 
+    borderRadius: 400/ 2,
+    alignSelf:'center',
+    marginTop:10,
+    color:'#ffffff',
   },
   settingContainer:{
     flexDirection: 'column',
@@ -130,7 +138,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 17,
     marginTop: 0,
-    color:COLORS.primary,
+    color:"#312651",
     marginLeft:0,
     marginTop:3,
   },

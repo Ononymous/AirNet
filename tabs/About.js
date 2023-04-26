@@ -1,5 +1,4 @@
-import { ScrollView,Text, View, Image,SafeAreaView,StyleSheet,Dimensions} from "react-native";
-import { COLORS } from "../theme";
+import { ScrollView,Text, View, Image,SafeAreaView,StyleSheet } from "react-native";
 
 export default function About(){
     return (
@@ -18,9 +17,6 @@ export default function About(){
                 <Text style={styles.Slogan}>
                 AirNet, Connecting You to the Sky
                 </Text>
-
-
-             
             </View>
             </ScrollView>
         </SafeAreaView>

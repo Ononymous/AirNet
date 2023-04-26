@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Alert } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Alert, Platform } from 'react-native';
 import PlaneItem from '../components/PlaneItem';
 import { useState } from 'react';
 import { useFavoritePlanes } from '../components/MyFavoritePlanes';
@@ -40,7 +40,7 @@ export default function MyFavorite({navigation}) {
   );
 }
 
-const TitleHeight = 110;
+const TitleHeight = Platform.OS === 'android' ? 60 : 100;
 
 const styles = StyleSheet.create({
   ScrollView: {

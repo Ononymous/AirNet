@@ -1,4 +1,5 @@
 import { StyleSheet, View, Platform, StatusBar, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
 
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,104 +16,176 @@ import BackButton from './components/BackButton';
 import CameraButton from './components/CameraButton';
 import HeartButton from './components/HeartButton';
 
+import 'react-native-url-polyfill/auto';
+import Auth from './backend/Auth';
+import Account from './backend/Account';
+import { supabase } from './backend/supabase';
+
+import SessionContext from './backend/SessionContext';
+
+// import useLocation from './backend/useLocation';
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  const [session, setSession] = useState(null);
+
+  // const location = useLocation();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="PlaneList">
-          <Stack.Screen name="PlaneList" component={PlaneList} options={({ navigation }) => ({
-            title: 'Nearby Planes',
-            headerStyle: {
-              height: TitleHeight,
-              backgroundColor: '#373F47',
-            },  
-            headerTitleStyle: {
-              fontSize: 24,
-              fontWeight: 'bold',
-              color: '#fff',
-            },
-            headerRight: () => (
-              <SettingButton onPress={() => navigation.navigate("Setting")} />
-            ),
-          })}/>
-          <Stack.Screen name="Setting" component={Setting} options={({ navigation }) => ({
-            title: 'Setting',
-            headerStyle: {
-              height: TitleHeight,
-              backgroundColor: '#373F47',
-            },
-            headerTitleStyle: {
-              fontSize: 24,
-              fontWeight: 'bold',
-              color: '#fff',
-            },
-            headerLeft: () => (
-              <BackButton onPress={() => navigation.goBack()} />
-            ),
-          })}/>
-          <Stack.Screen name="MoreInfo" component={MoreInfo} options={({ navigation }) => ({
-            headerStyle: {
-              height: TitleHeight,
-              backgroundColor: '#373F47',
-            },
-            headerTitleStyle: {
-              fontSize: 24,
-              fontWeight: 'bold',
-              color: '#fff',
-            },
-            headerLeft: () => (
-              <BackButton onPress={() => navigation.goBack()} />
-            ),
-            headerRight: () => (
-              <View style={styles.lowerContainer}>
-                <HeartButton/>
-                <CameraButton onPress={() => alert("Camera pressed")}/> 
-              </View>
-            ),
-          })}/>
-          <Stack.Screen name='MyFavorite' component={MyFavorite} options={({navigation})=>({
-            headerTitle:'My Favorites',
-            headerStyle: {
-              height: TitleHeight,
-              backgroundColor: '#373F47',
-            },
-            headerTitleStyle: {
-              fontSize: 24,
-              fontWeight: 'bold',
-              color: '#fff',
-            },
-            headerLeft: () => (
-              <BackButton onPress={() => navigation.goBack()} />
-            ),
-            headerRight: () => (
-              <SettingButton onPress={() => navigation.navigate("Setting")} />
-            ),
-          })}/>
-          <Stack.Screen name='About' component={About} options={({navigation})=>({
-            headerTitle:'About this App',
-            headerStyle: {
-              height: TitleHeight,
-              backgroundColor: '#373F47',
-            },
-            headerTitleStyle: {
-              fontSize: 24,
-              fontWeight: 'bold',
-              color: '#fff',
-            },
-            headerLeft: () => (
-              <BackButton onPress={() => navigation.goBack()} />
-            ),
-          })}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <SessionContext.Provider value={session}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="PlaneList">
+            <Stack.Screen name="PlaneList" component={PlaneList} options={({ navigation }) => ({
+              title: 'Nearby Planes',
+              headerStyle: {
+                height: TitleHeight,
+                backgroundColor: '#373F47',
+              },  
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#fff',
+              },
+              headerRight: () => (
+                <SettingButton onPress={() => navigation.navigate("Setting")} />
+              ),
+            })}/>
+            <Stack.Screen name="Setting" component={Setting} options={({ navigation }) => ({
+              title: 'Setting',
+              headerStyle: {
+                height: TitleHeight,
+                backgroundColor: '#373F47',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#fff',
+              },
+              headerLeft: () => (
+                <BackButton onPress={() => navigation.goBack()} />
+              ),
+            })}/>
+            <Stack.Screen name="MoreInfo" component={MoreInfo} options={({ navigation }) => ({
+              headerStyle: {
+                height: TitleHeight,
+                backgroundColor: '#373F47',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#fff',
+              },
+              headerLeft: () => (
+                <BackButton onPress={() => navigation.goBack()} />
+              ),
+              headerRight: () => (
+                session && session.user ?
+                <View style={styles.lowerContainer}>
+                  <HeartButton/>
+                  <CameraButton onPress={() => alert("Camera pressed")}/> 
+                </View> : 
+                <CameraButton onPress={() => alert("Camera pressed")}/>
+              ),
+            })}/>
+            {session && session.user ? 
+              <Stack.Screen name='MyFavorite' component={MyFavorite} options={({ navigation }) => ({
+                headerTitle:'My Favorites',
+                headerStyle: {
+                  height: TitleHeight,
+                  backgroundColor: '#373F47',
+                },
+                headerTitleStyle: {
+                  fontSize: 24,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                },
+                headerLeft: () => (
+                  <BackButton onPress={() => navigation.goBack()} />
+                ),
+              })}/> : 
+              <Stack.Screen name='MyFavorite' component={Auth} options={({ navigation }) => ({
+                headerTitle:'Authentication',
+                headerStyle: {
+                  height: TitleHeight,
+                  backgroundColor: '#373F47',
+                },
+                headerTitleStyle: {
+                  fontSize: 24,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                },
+                headerLeft: () => (
+                  <BackButton onPress={() => navigation.goBack()} />
+                ),
+              })}/>
+            }
+            {session && session.user ? 
+              <Stack.Screen name='User' component={Account} options={({ navigation }) => ({
+                headerTitle:'Account',
+                headerStyle: {
+                  height: TitleHeight,
+                  backgroundColor: '#373F47',
+                },
+                headerTitleStyle: {
+                  fontSize: 24,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                },
+                headerLeft: () => (
+                  <BackButton onPress={() => navigation.goBack()} />
+                ),
+              })}/> : 
+              <Stack.Screen name='User' component={Auth} options={({ navigation }) => ({
+                headerTitle:'Authentication',
+                headerStyle: {
+                  height: TitleHeight,
+                  backgroundColor: '#373F47',
+                },
+                headerTitleStyle: {
+                  fontSize: 24,
+                  fontWeight: 'bold',
+                  color: '#fff',
+                },
+                headerLeft: () => (
+                  <BackButton onPress={() => navigation.goBack()} />
+                ),
+              })}/>
+            }
+            <Stack.Screen name='About' component={About} options={({ navigation }) => ({
+              headerTitle:'About this App',
+              headerStyle: {
+                height: TitleHeight,
+                backgroundColor: '#373F47',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#fff',
+              },
+              headerLeft: () => (
+                <BackButton onPress={() => navigation.goBack()} />
+              ),
+            })}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SessionContext.Provider>
     </View>
   );
 }
 
-const TitleHeight = 100;
+const TitleHeight = Platform.OS === 'android' ? 55 : 100;
 
 const styles = StyleSheet.create({
   container: {

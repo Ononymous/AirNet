@@ -4,14 +4,14 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 const SignOutButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Text style={styles.buttonText}>Sign Out</Text>
+      <Text style={styles.buttonText}>Sign In</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#F13208',
+    backgroundColor: '#0492C2',
     borderRadius: 10,
     width: 150,
     padding: 10,

@@ -1,10 +1,12 @@
-import React,{useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 import CameraButton from './CameraButton';
 import HeartButton from './HeartButton';
 import MoreInfoButton from './MoreInfoButton';
+import SessionContext from '../backend/SessionContext';
 
 export default function PlaneItem ({ plane, navigation }) {
+  const session = useContext(SessionContext);
   return (
       <View style={styles.container}>
         {/* Upper container */}
@@ -20,8 +22,10 @@ export default function PlaneItem ({ plane, navigation }) {
 
         {/* Lower container */}
         <View style={styles.lowerContainer}>
-          <CameraButton onPress={() => alert("Camera pressed")}/> 
+          <CameraButton onPress={() => alert("Camera pressed")}/>
+          {session && session.user.id &&
           <HeartButton favoritePlane={plane}/>
+          }
           <MoreInfoButton onPress={() => navigation.navigate("MoreInfo", {plane: plane})}/>
         </View>
 
@@ -37,6 +41,7 @@ const styles = StyleSheet.create({
   lowerContainer: {
     paddingTop: 5,
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   container: {
     flexDirection: 'column',

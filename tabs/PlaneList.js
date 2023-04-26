@@ -1,8 +1,6 @@
-import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Alert } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Alert, Platform } from 'react-native';
 import PlaneItem from '../components/PlaneItem';
 import { useState } from 'react';
-import MoreInfo from './MoreInfo';
-import SettingButton from '../components/SettingButton';
 import SampleData from '../SampleData';
 
 //make to do list app that shows planes that are flying nearby
@@ -38,7 +36,7 @@ export default function PlaneList({navigation}) {
   );
 }
 
-const TitleHeight = 110;
+const TitleHeight = Platform.OS === 'android' ? 60 : 100;
 
 const styles = StyleSheet.create({
   ScrollView: {
