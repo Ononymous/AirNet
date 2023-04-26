@@ -4,16 +4,17 @@ import { FontAwesome5, AntDesign, MaterialIcons, Ionicons } from '@expo/vector-i
 import SearchBar from "../components/SearchBar";
 import SignOutButton from "../components/SignOutButton";
 import { COLORS } from "../theme";
+import 'react-native-gesture-handler';
 
 
 
-export default function Setting(searchTerm,setSearchTerm,handleClick) {
+export default function Setting({navigation}) {
   return(
     <SafeAreaView style={{flex: 1, backgroundColor: '#373F47', padding: 10, paddingBottom: 20}}>
       <ScrollView>
-        <SearchBar/>
+        {/* <SearchBar/> */}
         <View style={styles.settingContainer}>
-          <Image source={uri='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'} style={styles.profileImage}></Image>
+          <Image source={require('../assets/802043_man_512x512.png')} style={styles.profileImage}></Image>
           <Text style={styles.userName}>User 123</Text>
           <View  style={styles.settingTab} >
               <View style={styles.settingTab}>
@@ -31,7 +32,7 @@ export default function Setting(searchTerm,setSearchTerm,handleClick) {
               <Switch style={styles.switchStyle}/>
 
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigation.navigate('MyFavorite')}>
             <View  style={styles.settingTab} >
               <View style={styles.settingTab}>
                 <FontAwesome5 name="star" size={24} color="black" />
@@ -41,7 +42,7 @@ export default function Setting(searchTerm,setSearchTerm,handleClick) {
 
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigation.navigate('About')}>
             <View  style={styles.settingTab} >
               <View style={styles.settingTab}>
                 <AntDesign name="infocirlceo" size={24} color="black" />
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   },
   switchStyle:{
     marginRight:10,
-    marginTop:15,
+    marginTop:5,
   },
   settingIcons:{
     marginRight:10,

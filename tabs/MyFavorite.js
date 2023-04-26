@@ -1,14 +1,13 @@
 import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Alert } from 'react-native';
 import PlaneItem from '../components/PlaneItem';
 import { useState } from 'react';
-import MoreInfo from './MoreInfo';
-import SettingButton from '../components/SettingButton';
-import SampleData from '../SampleData';
+import { useFavoritePlanes } from '../components/MyFavoritePlanes';
 
 //make to do list app that shows planes that are flying nearby
-export default function PlaneList({navigation}) {
+export default function MyFavorite({navigation}) {
+  const favoritePlanes = useFavoritePlanes()[0];
   const [refreshing, setRefreshing] = useState(false);
-  const ListOfPlanes = SampleData.map((plane, index) => {
+  const ListOfPlanes = favoritePlanes.map((plane, index) => {
     return(
       <PlaneItem 
       key={index}
@@ -18,6 +17,7 @@ export default function PlaneList({navigation}) {
   )})
   return (
     <View style={styles.container}>
+      
       {/* Planes list area */}
       <View style={styles.planesWrapper}>
         {/* pull down to refresh */}
@@ -28,12 +28,14 @@ export default function PlaneList({navigation}) {
               alert("Refresh triggered"); 
               setRefreshing(false)
         }} />}>
+
           {/* Plane items (supports 6 planes currently)*/}
           <View style={styles.items} >
             {ListOfPlanes}
           </View>
         </ScrollView>
       </View>
+
     </View>
   );
 }

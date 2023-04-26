@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 import CameraButton from './CameraButton';
 import HeartButton from './HeartButton';
@@ -21,7 +21,7 @@ export default function PlaneItem ({ plane, navigation }) {
         {/* Lower container */}
         <View style={styles.lowerContainer}>
           <CameraButton onPress={() => alert("Camera pressed")}/> 
-          <HeartButton onPress={() => alert("Heart pressed")}/>
+          <HeartButton favoritePlane={plane}/>
           <MoreInfoButton onPress={() => navigation.navigate("MoreInfo", {plane: plane})}/>
         </View>
 

@@ -7,11 +7,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import PlaneList from './tabs/PlaneList';
 import Setting from './tabs/Setting';
 import MoreInfo from './tabs/MoreInfo';
+import MyFavorite from './tabs/MyFavorite';
+import About from './tabs/About';
 
 import SettingButton from './components/SettingButton';
 import BackButton from './components/BackButton';
 import CameraButton from './components/CameraButton';
 import HeartButton from './components/HeartButton';
+
 
 const Stack = createStackNavigator();
 
@@ -65,9 +68,42 @@ export default function App() {
             ),
             headerRight: () => (
               <View style={styles.lowerContainer}>
-                <HeartButton onPress={() => alert("Heart pressed")}/>
+                <HeartButton/>
                 <CameraButton onPress={() => alert("Camera pressed")}/> 
               </View>
+            ),
+          })}/>
+          <Stack.Screen name='MyFavorite' component={MyFavorite} options={({navigation})=>({
+            headerTitle:'My Favorites',
+            headerStyle: {
+              height: TitleHeight,
+              backgroundColor: '#373F47',
+            },
+            headerTitleStyle: {
+              fontSize: 24,
+              fontWeight: 'bold',
+              color: '#fff',
+            },
+            headerLeft: () => (
+              <BackButton onPress={() => navigation.goBack()} />
+            ),
+            headerRight: () => (
+              <SettingButton onPress={() => navigation.navigate("Setting")} />
+            ),
+          })}/>
+          <Stack.Screen name='About' component={About} options={({navigation})=>({
+            headerTitle:'About this App',
+            headerStyle: {
+              height: TitleHeight,
+              backgroundColor: '#373F47',
+            },
+            headerTitleStyle: {
+              fontSize: 24,
+              fontWeight: 'bold',
+              color: '#fff',
+            },
+            headerLeft: () => (
+              <BackButton onPress={() => navigation.goBack()} />
             ),
           })}/>
         </Stack.Navigator>
