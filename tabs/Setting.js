@@ -63,6 +63,7 @@ export default function Setting({navigation}) {
 
   )
 }
+
 const styles = StyleSheet.create({
   HEADERVIEW:{
     justifyContent:'space-evenly',

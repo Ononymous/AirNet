@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
