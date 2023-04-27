@@ -1,12 +1,14 @@
 import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Alert, Platform } from 'react-native';
 import PlaneItem from '../components/PlaneItem';
-import { useState } from 'react';
-import SampleData from '../SampleData';
+import { useState, useEffect } from 'react';
+import usePlaneData from '../backend/usePlaneData';
 
 //make to do list app that shows planes that are flying nearby
 export default function PlaneList({navigation}) {
-  const [refreshing, setRefreshing] = useState(false);
-  const ListOfPlanes = SampleData.map((plane, index) => {
+  const [refreshing, setRefreshing] = useState(true);
+  const planeData = usePlaneData(refreshing, setRefreshing);
+  const [once, setOnce] = useState(true);
+  const ListOfPlanes = planeData.map((plane, index) => {
     return(
       <PlaneItem 
       key={index}
@@ -14,6 +16,7 @@ export default function PlaneList({navigation}) {
       navigation={navigation}
       />
   )})
+
   return (
     <View style={styles.container}>
       {/* Planes list area */}
@@ -22,9 +25,8 @@ export default function PlaneList({navigation}) {
         <ScrollView style={styles.ScrollView} persistentScrollbar={true} 
           refreshControl={<RefreshControl refreshing={refreshing} 
             onRefresh={() => {
-              setRefreshing(true); 
-              alert("Refresh triggered"); 
-              setRefreshing(false)
+              setRefreshing(true);
+              setOnce(false);
         }} />}>
           {/* Plane items (supports 6 planes currently)*/}
           <View style={styles.items} >

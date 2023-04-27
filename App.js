@@ -23,14 +23,10 @@ import { supabase } from './backend/supabase';
 
 import SessionContext from './backend/SessionContext';
 
-// import useLocation from './backend/useLocation';
-
 const Stack = createStackNavigator();
 
 export default function App() {
   const [session, setSession] = useState(null);
-
-  // const location = useLocation();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {

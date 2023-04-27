@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
     borderRadius: 400/ 2,
     alignSelf:'center',
     marginTop:10,
-    color:'#ffffff',
   },
   settingContainer:{
     flexDirection: 'column',

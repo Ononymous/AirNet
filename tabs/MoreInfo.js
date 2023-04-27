@@ -23,29 +23,29 @@ export default function MoreInfo({route, navigation}) {
           </View>
           <View style={styles.infoContainer}>
             <FlightInfo str='Route'/>
-            <Text style={styles.BiggerText}>{plane.origin} to {plane.destination + '\n'}</Text>
+            <Text style={styles.originText}>{plane.originFull + ' (' + plane.origin + ')\n'} to {'\n' + plane.destinationFull + ' (' + plane.destination + ')\n'}</Text>
           </View>
           <View style={styles.infoContainer}>
             <FlightInfo str='Scheduled Arrival Time '/>
-            <Text style={styles.BiggerText}>3:25 PM {'\n'}</Text>
+            <Text style={styles.BiggerText}>{plane.scheduledArrival}{'\n'}</Text>
           </View>
           <View style={styles.infoContainer3}>
             <View style={styles.infoContainer} width={110}>
               <FlightInfo str='Altitude'/>
-              <Text style={styles.NUM}>0 ft {'\n'}</Text>
+              <Text style={styles.NUM}>{plane.altitude} ft {'\n'}</Text>
             </View>
             <View style={styles.infoContainer} width={110}>
-              <FlightInfo str='Langitude'/>
-              <Text style={styles.NUM}>37.3627 {'\n'}</Text>
+              <FlightInfo str='Latitude'/>
+              <Text style={styles.NUM}>{plane.latitude} {'\n'}</Text>
             </View>
             <View style={styles.infoContainer} width={110}>
               <FlightInfo str='Longitude'/>
-              <Text style={styles.NUM}>-121.922 {'\n'}</Text>
+              <Text style={styles.NUM}>{plane.longitude} {'\n'}</Text>
             </View>
           </View>
           <View style={styles.infoContainer}>
             <FlightInfo str='Aircraft Speed'/>
-            <Text style={styles.BiggerText}>0 Knots {'\n'}</Text>
+            <Text style={styles.BiggerText}>{plane.speed} Knots {'\n'}</Text>
           </View>
         </View>     
       </ScrollView>
@@ -109,6 +109,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 25,
+    marginTop: 0,
+    color:'#ffffff',
+    backgroundColor: '#373F47',
+  },
+  originText: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 15,
     marginTop: 0,
     color:'#ffffff',
     backgroundColor: '#373F47',
