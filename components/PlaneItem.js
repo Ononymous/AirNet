@@ -26,7 +26,7 @@ export default function PlaneItem ({ plane, navigation }) {
           {session && session.user.id &&
           <HeartButton favoritePlane={plane}/>
           }
-          <MoreInfoButton onPress={() => navigation.navigate("MoreInfo", {planeData: plane})}/>
+          <MoreInfoButton onPress={() => navigation.navigate("MoreInfo", {plane: plane})}/>
         </View>
 
       </View>

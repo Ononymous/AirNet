@@ -3,7 +3,7 @@ import axios from 'axios';
 export default async function getPlanes(lat, lng) {
     if(lat === null || lng === null) return null;
 
-    const offset = 2;
+    const offset = 3;
 
     const nLat = lat + offset
     const nLng = lng + offset

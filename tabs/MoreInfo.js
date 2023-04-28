@@ -25,10 +25,10 @@ export default function MoreInfo({route, navigation}) {
             <FlightInfo str='Route'/>
             <Text style={styles.originText}>{plane.originFull + ' (' + plane.origin + ')\n'} to {'\n' + plane.destinationFull + ' (' + plane.destination + ')\n'}</Text>
           </View>
-          <View style={styles.infoContainer}>
+          {/* <View style={styles.infoContainer}>
             <FlightInfo str='Scheduled Arrival Time '/>
             <Text style={styles.BiggerText}>{plane.scheduledArrival}{'\n'}</Text>
-          </View>
+          </View> */}
           <View style={styles.infoContainer3}>
             <View style={styles.infoContainer} width={110}>
               <FlightInfo str='Altitude'/>

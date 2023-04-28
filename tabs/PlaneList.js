@@ -7,7 +7,6 @@ import usePlaneData from '../backend/usePlaneData';
 export default function PlaneList({navigation}) {
   const [refreshing, setRefreshing] = useState(true);
   const planeData = usePlaneData(refreshing, setRefreshing);
-  const [once, setOnce] = useState(true);
   const ListOfPlanes = planeData.map((plane, index) => {
     return(
       <PlaneItem 
@@ -26,7 +25,6 @@ export default function PlaneList({navigation}) {
           refreshControl={<RefreshControl refreshing={refreshing} 
             onRefresh={() => {
               setRefreshing(true);
-              setOnce(false);
         }} />}>
           {/* Plane items (supports 6 planes currently)*/}
           <View style={styles.items} >

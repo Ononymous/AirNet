@@ -10,6 +10,8 @@ export default async function getSinglePlane(id, plane) {
                 const airline = response?.data?.airline?.name
                 const planeModel = response?.data?.aircraft?.model?.text
                 const originFull = response?.data?.airport?.origin?.name
+                const origin = response?.data?.airport?.origin?.code?.iata
+                const destination = response?.data?.airport?.destination?.code?.iata
                 const destinationFull = response?.data?.airport?.destination?.name
                 const largeImages = response?.data?.aircraft?.images?.large
                 const sideViewImage = response?.data?.aircraft?.images?.sideview
@@ -22,15 +24,20 @@ export default async function getSinglePlane(id, plane) {
                 ? sideViewImage
                 : thumbnails && thumbnails.length > 0
                 ? thumbnails[0].src
-                : "";
+                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqEWgS0uxxEYJ0PsOb2OgwyWvC0Gjp8NUdPw&usqp=CAU";
+                
+                console.log(planeModel)
+                
                 return {
                     ...plane,
                     imgUrl: imageUrl,
-                    airline: airline,
-                    planeType: planeModel,
+                    airline: airline? airline : 'Unknown',
+                    planeType: planeModel? planeModel : 'Unknown',
                     originFull: originFull,
                     destinationFull: destinationFull,
                     flightNumber: flightNumber,
+                    origin: origin? origin : 'Unknown',
+                    destination: destination? destination : 'Unknown',
                 }
             }
             return null
