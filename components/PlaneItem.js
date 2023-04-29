@@ -7,11 +7,11 @@ import SessionContext from '../backend/SessionContext';
 
 export default function PlaneItem ({ plane, navigation }) {
   const session = useContext(SessionContext);
+  const imgUrl = plane.imgUrl? plane.imgUrl : "https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png"
   return (
       <View style={styles.container}>
-        {/* Upper container */}
         <View style={styles.upperContainer}>
-          <Image source={{ uri: plane.imgUrl }} style={styles.image} />
+          <Image source={{ uri: imgUrl }} style={styles.image} />
           <View style={styles.textContainer}>
             <Text style={styles.airline}>{plane.airline}</Text>
             <Text style={styles.flightNumber}>{plane.flightNumber}</Text>
@@ -24,7 +24,7 @@ export default function PlaneItem ({ plane, navigation }) {
         <View style={styles.lowerContainer}>
           <CameraButton onPress={() => alert("Camera pressed")}/>
           {session && session.user.id &&
-          <HeartButton favoritePlane={plane}/>
+          <HeartButton id={plane.id}/>
           }
           <MoreInfoButton onPress={() => navigation.navigate("MoreInfo", {plane: plane})}/>
         </View>

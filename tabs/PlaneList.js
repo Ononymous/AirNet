@@ -5,8 +5,9 @@ import usePlaneData from '../backend/usePlaneData';
 
 //make to do list app that shows planes that are flying nearby
 export default function PlaneList({navigation}) {
-  const [refreshing, setRefreshing] = useState(true);
-  const planeData = usePlaneData(refreshing, setRefreshing);
+  const [refreshing, setRefreshing] = useState(false);
+  const [once, setOnce] = useState(false);
+  const planeData = usePlaneData(refreshing, setRefreshing, once, setOnce);
   const ListOfPlanes = planeData.map((plane, index) => {
     return(
       <PlaneItem 
@@ -25,6 +26,7 @@ export default function PlaneList({navigation}) {
           refreshControl={<RefreshControl refreshing={refreshing} 
             onRefresh={() => {
               setRefreshing(true);
+              setOnce(true);
         }} />}>
           {/* Plane items (supports 6 planes currently)*/}
           <View style={styles.items} >

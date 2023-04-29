@@ -1,14 +1,27 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
 import FlightInfo from '../components/FlightInfo';
 import { useEffect } from 'react';
+import SessionContext from '../backend/SessionContext';
+
+import HeartButton from '../components/HeartButton';
+import CameraButton from '../components/CameraButton';
 
 export default function MoreInfo({route, navigation}) {
+  const session = useContext(SessionContext);
   const { plane } = route.params;
 
   useEffect(() => {
     navigation.setOptions({
       headerTitle: `${plane.flightNumber}`,
+      // headerRight: 
+      //   (session && session.user ?
+      //   <View style={styles.lowerContainer}>
+      //     <HeartButton favoritePlane={plane.id}/>
+      //     <CameraButton onPress={() => alert("Camera pressed")}/> 
+      //   </View> : 
+      //   <CameraButton onPress={() => alert("Camera pressed")}/>)
+      // ,
     });
   }, [navigation, plane.flightNumber]);
   

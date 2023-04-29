@@ -1,35 +1,28 @@
-import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, Alert, Platform } from 'react-native';
+import { ScrollView, StyleSheet, View, Dimensions, Platform } from 'react-native';
 import PlaneItem from '../components/PlaneItem';
-import { useState } from 'react';
-import { useFavoritePlanes } from '../components/MyFavoritePlanes';
+import useFavoritePlanes from '../backend/useFavoritePlanes';
+import getSinglePlane from '../backend/getSinglePlane';
 
 //make to do list app that shows planes that are flying nearby
 export default function MyFavorite({navigation}) {
-  const favoritePlanes = useFavoritePlanes()[0];
-  const [refreshing, setRefreshing] = useState(false);
-  const ListOfPlanes = favoritePlanes.map((plane, index) => {
-    return(
-      <PlaneItem 
-      key={index}
-      plane={plane}
-      navigation={navigation}
-      />
-  )})
+  const { favoritePlanes, loading, updateFavoritePlanes } = useFavoritePlanes();
+  const ListOfPlanes = favoritePlanes.map((id, index) => {
+    (async () => {
+      const plane = await getSinglePlane(id);
+      console.log(id);
+      return(
+        <PlaneItem 
+        key={index}
+        plane={plane}
+        navigation={navigation}
+        />
+      )
+    })()
+  });
   return (
     <View style={styles.container}>
-      
-      {/* Planes list area */}
       <View style={styles.planesWrapper}>
-        {/* pull down to refresh */}
-        <ScrollView style={styles.ScrollView} persistentScrollbar={true} 
-          refreshControl={<RefreshControl refreshing={refreshing} 
-            onRefresh={() => {
-              setRefreshing(true); 
-              alert("Refresh triggered"); 
-              setRefreshing(false)
-        }} />}>
-
-          {/* Plane items (supports 6 planes currently)*/}
+        <ScrollView style={styles.ScrollView} persistentScrollbar={true}>
           <View style={styles.items} >
             {ListOfPlanes}
           </View>

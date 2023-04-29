@@ -3,7 +3,7 @@ import useLocation from "./useLocation";
 import getPlanes from "./getPlanes";
 import getSinglePlane from "./getSinglePlane";
 
-export default function usePlaneData(refreshing, setRefreshing) {
+export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
 	const location = useLocation();
     const [counter, setCounter] = useState(true);
 	const [planeData, setPlaneData] = useState([]);
@@ -12,9 +12,9 @@ export default function usePlaneData(refreshing, setRefreshing) {
 	const lng = location?.lng;
 
     useEffect(() => {
-        if (refreshing) {
+        if (once) {
             setCounter(!counter);
-            setRefreshing(false);
+            setOnce(false);
         }
     }, [location])
 
@@ -27,7 +27,6 @@ export default function usePlaneData(refreshing, setRefreshing) {
                         (key) => key !== "full_count" && key !== "version" && key !== "stats"
                     );
                     setPlaneData([])
-                    console.log(planeIds)
                     for(id of planeIds) {
                         tempPlane = {
                             id: id,
@@ -50,6 +49,7 @@ export default function usePlaneData(refreshing, setRefreshing) {
                         setPlaneData((prev) => [...prev, tempPlane])
                     }
 				}
+                setRefreshing(false);
 			})();
 		}
         else{
