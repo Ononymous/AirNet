@@ -1,4 +1,4 @@
-import { StyleSheet, View, Platform, StatusBar, Text } from 'react-native';
+import { StyleSheet, View, Platform, StatusBar, Text, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react';
 
 import 'react-native-gesture-handler';
@@ -40,6 +40,69 @@ export default function App() {
       setSession(session);
     });
   }, []);
+
+  useEffect(() => {
+    if (session) {
+      updateFavoritePlanes();
+    }
+  }, [favoritePlanes]);
+
+  useEffect(() => {
+		if (!session) {
+			setFavoritePlanes([]);
+      // console.log("logged out clear favorite planes")
+		}
+		if (session) {
+			getFavoritePlanes();
+			// console.log("logged in get favorite planes")
+		}
+	}, [session]);
+
+  async function getFavoritePlanes() {
+    try {
+        if (!session?.user) throw new Error('No user on the session! (get)');
+
+        // Fetch the favorite_planes for the user
+        const { data, error } = await supabase
+            .from('profiles')
+            .select('favorite_planes')
+            .eq('id', session?.user.id)
+            .single();
+
+        if (error) throw error;
+
+        // Store the favorite_planes in the PlaneContext
+        setFavoritePlanes(data.favorite_planes || []);
+    } catch (error) {
+        if (error instanceof Error) {
+            Alert.alert(error.message);
+        }
+    }
+}
+
+async function updateFavoritePlanes() {
+    try {
+        if (!session?.user) throw new Error('No user on the session! (update)');
+
+        const updates = {
+            id: session?.user.id,
+            favorite_planes: favoritePlanes,
+            updated_at: new Date(),
+        };
+
+        let { error: updateError } = await supabase.from('profiles').upsert(updates);
+
+        // console.log("updateFavoritePlanes")
+
+        if (updateError) {
+            throw updateError;
+        }
+    } catch (error) {
+        if (error instanceof Error) {
+            Alert.alert(error.message);
+        }
+    }
+}
 
   return (
     <View style={styles.container}>
@@ -89,14 +152,6 @@ export default function App() {
                 },
                 headerLeft: () => (
                   <BackButton onPress={() => navigation.goBack()} />
-                ),
-                headerRight: () => (
-                  session && session.user ?
-                  <View style={styles.lowerContainer}>
-                    <HeartButton/>
-                    <CameraButton onPress={() => alert("Camera pressed")}/> 
-                  </View> : 
-                  <CameraButton onPress={() => alert("Camera pressed")}/>
                 ),
               })}/>
               {session && session.user ? 

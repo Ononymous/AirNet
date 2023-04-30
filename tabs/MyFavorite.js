@@ -40,7 +40,6 @@ export default function MyFavorite({navigation}) {
   useEffect(() => {
     (async () => {
       setPlanes([]);
-      console.log(favoritePlanes)
       for(id of favoritePlanes) {
         tempPlane.id = id;
         const newPlane = await getSinglePlane(id, tempPlane);
@@ -48,7 +47,11 @@ export default function MyFavorite({navigation}) {
       }
       setRefreshing(false);
     })();
-  }, [favoritePlanes, counter]);
+  }, [counter]);
+
+  useEffect(() => {
+    // console.log(favoritePlanes)
+  }, [favoritePlanes]);
 
   return (
     <View style={styles.container}>

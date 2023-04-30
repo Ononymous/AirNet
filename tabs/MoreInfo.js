@@ -13,7 +13,6 @@ export default function MoreInfo({route, navigation}) {
   const renderHeaderRight = (id) => {
     if (session && session.user) {
       // console.log(id)
-      // console.log(plane)
       return (
         <View style={styles.lowerContainer}>
           <HeartButton id={id} />
