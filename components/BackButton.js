@@ -5,14 +5,14 @@ import { Ionicons } from '@expo/vector-icons';
 const Button = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
-      <Ionicons name="arrow-back" size={24} color="white" />
+      <Ionicons name="arrow-back" size={24} color="black" />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#373F47',
+    backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
     width: 50,
