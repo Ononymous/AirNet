@@ -1,9 +1,9 @@
+import { FontAwesome } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
 import useFavoritePlanes from '../backend/useFavoritePlanes';
 
-const HeartButton = ({id}) => {
+const Refresh = ({id}) => {
   const { favoritePlanes, loading, updateFavoritePlanes } = useFavoritePlanes();
   const [heartIcon, setHeartIcon] = useState('hearto');
 
@@ -17,14 +17,14 @@ const HeartButton = ({id}) => {
 
   return (
     <TouchableOpacity style={styles.button} onPress={()=>{updateFavoritePlanes(id)}}>
-      <AntDesign name={heartIcon} size={27} color="black" />
+      <FontAwesome name="refresh" size={30} color="white" />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#0f0c0c',
     alignItems: 'center',
     justifyContent: 'center',
     width: 50,
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HeartButton;
+export default Refresh;

@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View, RefreshControl, Dimensions, Modal, 
 import PlaneItem from '../components/PlaneItem';
 import { useState, useEffect } from 'react';
 import usePlaneData from '../backend/usePlaneData';
+import BottomMenu from '../components/BottomMenu';
 
 //make to do list app that shows planes that are flying nearby
 export default function PlaneList({navigation}) {
@@ -34,28 +35,38 @@ export default function PlaneList({navigation}) {
           </View>
         </ScrollView>
       </View>
+
+      {/* Bottom menu */}
+      <View style={styles.bottomMenu}>
+        <BottomMenu />
+      </View>
     </View>
+      
   );
 }
 
 const TitleHeight = Platform.OS === 'android' ? 60 : 100;
 
 const styles = StyleSheet.create({
+  bottomMenu: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+  },
   ScrollView: {
-    backgroundColor: '#C3C9E9',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
   },
 
   container: {
     flex: 1,
-    backgroundColor: '#373F47',
+    backgroundColor: '#FFFFFF',
     height: '100%',
   },
 
   titleWrapper: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
     paddingHorizontal: 10,
     height: TitleHeight,
   },  
@@ -74,7 +85,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   items: {
-    backgroundColor: '#C3C9E9',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     padding: 10,
   },
