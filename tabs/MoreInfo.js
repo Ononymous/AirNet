@@ -11,21 +11,27 @@ import CameraButton from '../components/CameraButton';
 export default function MoreInfo({route, navigation}) {
   const session = useContext(SessionContext);
   const { plane } = route.params;
+  const renderHeaderRight = (id) => {
+    if (session && session.user) {
+      // console.log(id)
+      return (
+        <View style={styles.lowerContainer}>
+          <HeartButton id={id} />
+          <CameraButton onPress={() => alert('Camera pressed')} />
+        </View>
+      );
+    } else {
+      return <CameraButton onPress={() => alert('Camera pressed')} />;
+    }
+  };
 
   useEffect(() => {
     navigation.setOptions({
       headerTitle: `${plane.flightNumber}`,
-      // headerRight: 
-      //   (session && session.user ?
-      //   <View style={styles.lowerContainer}>
-      //     <HeartButton favoritePlane={plane.id}/>
-      //     <CameraButton onPress={() => alert("Camera pressed")}/> 
-      //   </View> : 
-      //   <CameraButton onPress={() => alert("Camera pressed")}/>)
-      // ,
+      headerRight: () => renderHeaderRight(plane.id),
     });
-  }, [navigation, plane.flightNumber]);
-
+  }, [navigation, plane.id, session]);
+  
   return (
     <LinearGradient colors={['#fafafa', '#a8b2e4']} style={styles.container}>
     <View style={styles.newContainer}>
@@ -180,5 +186,11 @@ const styles = StyleSheet.create({
   backBtn:{
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  lowerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 10,
   },
 });
