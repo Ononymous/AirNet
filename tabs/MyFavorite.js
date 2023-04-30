@@ -1,28 +1,64 @@
-import { ScrollView, StyleSheet, View, Dimensions, Platform } from 'react-native';
+import { ScrollView, StyleSheet, View, Dimensions, Platform, RefreshControl } from 'react-native';
 import PlaneItem from '../components/PlaneItem';
-import useFavoritePlanes from '../backend/useFavoritePlanes';
+import FavoritePlanesContext from '../backend/FavoritePlanesContext';
 import getSinglePlane from '../backend/getSinglePlane';
+import { useEffect, useState, useContext } from 'react';
+
+const tempPlane = {
+  id: 0,
+  hex: "",
+  imgUrl: "",
+  airline: "",
+  flightNumber: "",
+  origin: "",
+  originFull: "",
+  destination: "",
+  destinationFull: "",
+  planeType: "",
+  scheduledArrival: 0,
+  altitude: 0,
+  latitude: 0,
+  longitude: 0,
+  speed: 0,
+}
 
 //make to do list app that shows planes that are flying nearby
 export default function MyFavorite({navigation}) {
-  const { favoritePlanes, loading, updateFavoritePlanes } = useFavoritePlanes();
-  const ListOfPlanes = favoritePlanes.map((id, index) => {
+  const { favoritePlanes } = useContext(FavoritePlanesContext);
+  const [planes, setPlanes] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const [counter, setCounter] = useState(false);
+  const ListOfPlanes = planes.map((plane, index) => {
+    return(
+      <PlaneItem 
+      key={index}
+      plane={plane}
+      navigation={navigation}
+      />)
+  })
+
+  useEffect(() => {
     (async () => {
-      const plane = await getSinglePlane(id);
-      console.log(id);
-      return(
-        <PlaneItem 
-        key={index}
-        plane={plane}
-        navigation={navigation}
-        />
-      )
-    })()
-  });
+      setPlanes([]);
+      console.log(favoritePlanes)
+      for(id of favoritePlanes) {
+        tempPlane.id = id;
+        const newPlane = await getSinglePlane(id, tempPlane);
+        setPlanes(planes => [...planes, newPlane]);
+      }
+      setRefreshing(false);
+    })();
+  }, [favoritePlanes, counter]);
+
   return (
     <View style={styles.container}>
       <View style={styles.planesWrapper}>
-        <ScrollView style={styles.ScrollView} persistentScrollbar={true}>
+        <ScrollView style={styles.ScrollView} persistentScrollbar={true} 
+          refreshControl={<RefreshControl refreshing={refreshing} 
+            onRefresh={() => {
+              setRefreshing(true);
+              setCounter(!counter);
+        }} />}>
           <View style={styles.items} >
             {ListOfPlanes}
           </View>

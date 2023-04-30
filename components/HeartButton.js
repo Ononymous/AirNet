@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
-import useFavoritePlanes from '../backend/useFavoritePlanes';
+import FavoritePlanesContext from '../backend/FavoritePlanesContext';
 
 const HeartButton = ({id}) => {
-  const { favoritePlanes, loading, updateFavoritePlanes } = useFavoritePlanes();
+  const { favoritePlanes, setFavoritePlanes, loading, setLoading } = useContext(FavoritePlanesContext);
   const [heartIcon, setHeartIcon] = useState('hearto');
 
   useEffect(() => {
+    // console.log(id)
     if (favoritePlanes.includes(id)) {
       setHeartIcon('heart');
     } else {
@@ -15,8 +16,17 @@ const HeartButton = ({id}) => {
     }
   }, [favoritePlanes]);
 
+  const handlePress = () => {
+    setLoading(true);
+    const newFavoritePlanes = favoritePlanes.includes(id)
+      ? favoritePlanes.filter((planeId) => planeId !== id)
+      : [...favoritePlanes, id];
+    setFavoritePlanes(newFavoritePlanes);
+    setLoading(false);
+  };
+
   return (
-    <TouchableOpacity style={styles.button} onPress={()=>{updateFavoritePlanes(id)}}>
+    <TouchableOpacity style={styles.button} onPress={handlePress}>
       <AntDesign name={heartIcon} size={27} color="white" />
     </TouchableOpacity>
   );

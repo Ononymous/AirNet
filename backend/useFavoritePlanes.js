@@ -1,43 +1,31 @@
 import { useState, useEffect, useContext } from 'react';
 import { supabase } from './supabase';
 import SessionContext from './SessionContext';
+import FavoritePlanesContext from './FavoritePlanesContext';
 
 export default function useFavoritePlanes() {
-	const session = useContext(SessionContext)
-    const [favoritePlanes, setFavoritePlanes] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const session = useContext(SessionContext);
+	const { favoritePlanes, setFavoritePlanes, loading, setLoading } = useContext(FavoritePlanesContext);
 
 	useEffect(() => {
-		if (session) getFavoritePlanes();
-        else setFavoritePlanes([]);
+		if (session) {
+			getFavoritePlanes();
+		} else {
+			setFavoritePlanes([]);
+		}
 	}, [session]);
 
-    async function updateFavoritePlanes(planeHexId) {
+	useEffect(() => {
+		if (session && favoritePlanes.length > 0) {
+			updateFavoritePlanes();
+		}
+	}, [favoritePlanes]);
+
+    async function updateFavoritePlanes() {
 		try {
-			setLoading(true);
 			if (!session?.user) throw new Error('No user on the session!');
 	
-			// Fetch the current favorite_planes for the user
-			const { data, error } = await supabase
-				.from('profiles')
-				.select('favorite_planes')
-				.eq('id', session?.user.id)
-				.single();
-	
-			if (error) throw error;
-	
-			const favoritePlanes = data.favorite_planes || [];
-	
-			// Add or remove the planeHexId
-			if (favoritePlanes.includes(planeHexId)) {
-				favoritePlanes.splice(favoritePlanes.indexOf(planeHexId), 1);
-			} else {
-				favoritePlanes.push(planeHexId);
-			}
-
-            setFavoritePlanes(favoritePlanes);
-	
-			// Update the favorite_planes column
+			setLoading(true);
 			const updates = {
 				id: session?.user.id,
 				favorite_planes: favoritePlanes,
@@ -54,13 +42,12 @@ export default function useFavoritePlanes() {
 				Alert.alert(error.message);
 			}
 		} finally {
-			setLoading(false);
+			setLoading(!loading);
 		}
 	}
 
 	async function getFavoritePlanes() {
 		try {
-			setLoading(true);
 			if (!session?.user) throw new Error('No user on the session!');
 	
 			// Fetch the favorite_planes for the user
@@ -78,10 +65,8 @@ export default function useFavoritePlanes() {
 			if (error instanceof Error) {
 				Alert.alert(error.message);
 			}
-		} finally {
-			setLoading(false);
 		}
-	}	
+	}
 
-    return { favoritePlanes, loading, updateFavoritePlanes };
+	return { updateFavoritePlanes };
 }
