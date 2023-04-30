@@ -119,13 +119,14 @@ async function updateFavoritePlanes() {
                 headerTitleStyle: {
                   fontSize: 24,
                   fontWeight: 'bold',
-                  color: '#000000',
+                  color: '#ffffff',
                 },
                 headerRight: () => (
                   <SettingButton onPress={() => navigation.navigate("Setting")} />
                 ),
               })}/>
               <Stack.Screen name="Setting" component={Setting} options={({ navigation }) => ({
+                title: 'Setting',
                 headerStyle: {
                   height: TitleHeight,
                   backgroundColor: '#ffffff',

@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     marginTop: 0,
-    color:'#ffffff',
-    backgroundColor: '#000000',
+    color:'#000000',
+    backgroundColor: '#ffffff',
 
   },
   profileImage:{

@@ -25,14 +25,14 @@ const HeartButton = ({id}) => {
 
   return (
     <TouchableOpacity style={styles.button} onPress={handlePress}>
-      <AntDesign name={heartIcon} size={27} color="white" />
+      <AntDesign name={heartIcon} size={27} color="black" />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#373F47',
+    backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
     width: 50,

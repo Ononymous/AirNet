@@ -35,19 +35,17 @@ export default function MoreInfo({route, navigation}) {
   return (
     <LinearGradient colors={['#fafafa', '#a8b2e4']} style={styles.container}>
     <View style={styles.newContainer}>
-      
       <ScrollView>
         <View style={styles.container}>
-          <View style={styles.imageContainer}>
 
-          
-          <Image source={{ uri: plane.imgUrl }} style={styles.image} backgroundColor='white' />
+          <View style={styles.imageContainer}>
+            <Image source={{ uri: plane.imgUrl }} style={styles.image} backgroundColor='white' />
           </View>
+
           <View style={styles.infoContainer}>
             <FlightInfo str='Aircraft Type'/>
             <Text style={styles.BiggerText}>{plane.planeType + '\n'}</Text>
           </View>
-
 
           <View style={styles.infoContainer}>
             <FlightInfo str='Route'/>
@@ -60,6 +58,7 @@ export default function MoreInfo({route, navigation}) {
           </View> */}
 
           <View style={styles.infoContainer3}>
+
             <View style={styles.infoContainer} width={110}>
               <FlightInfo str='Altitude'/>
               <Text style={styles.NUM}>{plane.altitude} ft {'\n'}</Text>
@@ -69,10 +68,12 @@ export default function MoreInfo({route, navigation}) {
               <FlightInfo str='Latitude'/>
               <Text style={styles.NUM}>{plane.latitude} {'\n'}</Text>
             </View>
+
             <View style={styles.infoContainer} width={110}>
               <FlightInfo str='Longitude'/>
               <Text style={styles.NUM}>{plane.longitude} {'\n'}</Text>
             </View>
+
           </View>
 
 
@@ -93,7 +94,6 @@ export default function MoreInfo({route, navigation}) {
 
 const styles = StyleSheet.create({
   newContainer:{
-
     height: "100%",
   },
 
@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     marginBottom: 0,
     borderWidth: 0,
-    gap:'15%',
   },
   infoContainer:{
     flexDirection: 'column',
