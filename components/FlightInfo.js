@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
     infoContainerTitle:{
         fontWeight: 'bold',
         fontSize: 15,
-        color:'#ffffff',
-        backgroundColor: '#373F47',
+        color:'#36454F',
         textAlign:'left',
     },
 });

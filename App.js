@@ -119,22 +119,21 @@ async function updateFavoritePlanes() {
                 headerTitleStyle: {
                   fontSize: 24,
                   fontWeight: 'bold',
-                  color: '#fff',
+                  color: '#000000',
                 },
                 headerRight: () => (
                   <SettingButton onPress={() => navigation.navigate("Setting")} />
                 ),
               })}/>
               <Stack.Screen name="Setting" component={Setting} options={({ navigation }) => ({
-                title: 'Setting',
                 headerStyle: {
                   height: TitleHeight,
-                  backgroundColor: '#373F47',
+                  backgroundColor: '#ffffff',
                 },
                 headerTitleStyle: {
                   fontSize: 24,
                   fontWeight: 'bold',
-                  color: '#fff',
+                  color: '#000000',
                 },
                 headerLeft: () => (
                   <BackButton onPress={() => navigation.goBack()} />
@@ -143,12 +142,12 @@ async function updateFavoritePlanes() {
               <Stack.Screen name="MoreInfo" component={MoreInfo} options={({ navigation }) => ({
                 headerStyle: {
                   height: TitleHeight,
-                  backgroundColor: '#373F47',
+                  backgroundColor: '#ffffff',
                 },
                 headerTitleStyle: {
                   fontSize: 24,
                   fontWeight: 'bold',
-                  color: '#fff',
+                  color: '#000000',
                 },
                 headerLeft: () => (
                   <BackButton onPress={() => navigation.goBack()} />
@@ -159,12 +158,12 @@ async function updateFavoritePlanes() {
                   headerTitle:'My Favorites',
                   headerStyle: {
                     height: TitleHeight,
-                    backgroundColor: '#373F47',
+                    backgroundColor: '#ffffff',
                   },
                   headerTitleStyle: {
                     fontSize: 24,
                     fontWeight: 'bold',
-                    color: '#fff',
+                    color: '#000000',
                   },
                   headerLeft: () => (
                     <BackButton onPress={() => navigation.goBack()} />
@@ -174,12 +173,12 @@ async function updateFavoritePlanes() {
                   headerTitle:'Authentication',
                   headerStyle: {
                     height: TitleHeight,
-                    backgroundColor: '#373F47',
+                    backgroundColor: '#ffffff',
                   },
                   headerTitleStyle: {
                     fontSize: 24,
                     fontWeight: 'bold',
-                    color: '#fff',
+                    color: '#000000',
                   },
                   headerLeft: () => (
                     <BackButton onPress={() => navigation.goBack()} />
@@ -191,12 +190,12 @@ async function updateFavoritePlanes() {
                   headerTitle:'Account',
                   headerStyle: {
                     height: TitleHeight,
-                    backgroundColor: '#373F47',
+                    backgroundColor: '#ffffff',
                   },
                   headerTitleStyle: {
                     fontSize: 24,
                     fontWeight: 'bold',
-                    color: '#fff',
+                    color: '#000000',
                   },
                   headerLeft: () => (
                     <BackButton onPress={() => navigation.goBack()} />
@@ -206,12 +205,12 @@ async function updateFavoritePlanes() {
                   headerTitle:'Authentication',
                   headerStyle: {
                     height: TitleHeight,
-                    backgroundColor: '#373F47',
+                    backgroundColor: '#ffffff',
                   },
                   headerTitleStyle: {
                     fontSize: 24,
                     fontWeight: 'bold',
-                    color: '#fff',
+                    color: '#000000',
                   },
                   headerLeft: () => (
                     <BackButton onPress={() => navigation.goBack()} />
@@ -222,12 +221,12 @@ async function updateFavoritePlanes() {
                 headerTitle:'About this App',
                 headerStyle: {
                   height: TitleHeight,
-                  backgroundColor: '#373F47',
+                  backgroundColor: '#ffffff',
                 },
                 headerTitleStyle: {
                   fontSize: 24,
                   fontWeight: 'bold',
-                  color: '#fff',
+                  color: '#000000',
                 },
                 headerLeft: () => (
                   <BackButton onPress={() => navigation.goBack()} />
