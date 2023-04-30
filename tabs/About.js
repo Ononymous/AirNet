@@ -2,7 +2,7 @@ import { ScrollView,Text, View, Image,SafeAreaView,StyleSheet } from "react-nati
 
 export default function About(){
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: '#373F47', padding: 10, paddingBottom: 10}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: '#ffffff', padding: 10, paddingBottom: 10}}>
             <ScrollView>
             <View style={styles.Container}>
                 <Image source={require('../assets/AirNet_Logo.png')} style={styles.Logo}></Image>
@@ -31,19 +31,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     marginTop: 0,
-    color:'#ffffff',
-    backgroundColor: '#373F47',
+    color:'#000000',
+    backgroundColor: '#ffffff',
     marginBottom:10
 
   },
 
   Logo:{
-     width: 200, 
-     height: 200, 
+     width: 100, 
+     height: 100, 
      borderRadius: 400/ 2,
-    //  alignSelf:'center',
+     alignSelf:'center',
      marginTop:10,
-     marginHorizontal:85
+    //  marginHorizontal:130,
+
 
   },
   Container:{
@@ -53,31 +54,31 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 5,
     marginHorizontal:2,
-    borderWidth: 5,
-    borderColor: '#373F47',
+    borderWidth: 0,
+
   },
   BiggerText:{
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 30,
-    color:'#ffffff',
+    color:'#000000',
     marginTop: 10,
     marginBottom:10,
   },
   Slogan:{
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 23,
-    color:'#35ACAF',
-    marginTop: 10,
+    fontSize: 20,
+    color:'#235f63',
+    marginTop: '20%',
     marginBottom:10,
   },
   Version:{
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 10,
-    color:'#ffffff',
-    marginTop: 0,
+    fontSize: 15,
+    color:'#000000',
+    marginTop: 10,
     marginBottom:10,
   }
   });

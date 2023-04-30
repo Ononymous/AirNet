@@ -8,15 +8,15 @@ import SignInButton from "../components/SignInButton";
 import { supabase } from "../backend/supabase";
 import SessionContext from "../backend/SessionContext";
 import 'react-native-gesture-handler';
+import SwitchBar from '../components/SwitchBar';
 
 export default function Setting({navigation}) {
 
   const session = useContext(SessionContext);
 
   return(
-    <SafeAreaView style={{flex: 1, backgroundColor: '#373F47', padding: 10, paddingBottom: 20}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#ffffff', padding: 10, paddingBottom: 20}}>
       <ScrollView>
-        {/* <SearchBar/> */}
         <View style={styles.settingContainer}>
           {session && session.user && <>
             <TouchableOpacity onPress={()=>navigation.navigate('User')}>
@@ -25,24 +25,24 @@ export default function Setting({navigation}) {
             <Text style={styles.userName}>{session?.user?.email}</Text>
           </>}
           <View  style={styles.settingTab} >
-              <View style={styles.settingTab}>
+              <View style={styles.Tab}>
                 <Ionicons name='notifications-outline' size={24} color="black" />
                 <Text style={styles.settingTabText}> Notifications</Text>
               </View>
-              <Switch style={styles.switchStyle}/>
+              <SwitchBar/>
           </View>
 
           <View  style={styles.settingTab} >
-              <View style={styles.settingTab}>
+              <View style={styles.Tab}>
                 <MaterialIcons name="gps-fixed" size={24} color="black" />
                 <Text style={styles.settingTabText}> GPS</Text>
               </View>
-              <Switch style={styles.switchStyle}/>
+              <SwitchBar/>
           </View>
 
           <TouchableOpacity onPress={()=>navigation.navigate('MyFavorite')}>
             <View  style={styles.settingTab} >
-              <View style={styles.settingTab}>
+              <View style={styles.Tab}>
                 <FontAwesome5 name="star" size={24} color="black" />
                 <Text style={styles.settingTabText}> Manage My Favorites</Text>
               </View>
@@ -52,7 +52,7 @@ export default function Setting({navigation}) {
 
           <TouchableOpacity onPress={()=>navigation.navigate('About')}>
             <View  style={styles.settingTab} >
-              <View style={styles.settingTab}>
+              <View style={styles.Tab}>
                 <AntDesign name="infocirlceo" size={24} color="black" />
                 <Text style={styles.settingTabText}> About</Text>
               </View>
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginTop: 0,
     color:'#ffffff',
-    backgroundColor: '#373F47',
+    backgroundColor: '#000000',
   },
   NUM:{
     textAlign: 'center',
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     marginTop: 0,
-    color:'#ffffff',
-    backgroundColor: '#373F47',
+    color:'#000000',
+    backgroundColor: '#ffffff',
 
   },
   profileImage:{
@@ -117,10 +117,30 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 5,
     marginHorizontal:2,
-    borderWidth: 5,
+    borderWidth: 0,
     borderColor: '#373F47',
+    
   },
   settingTab:{
+    flexDirection: 'row',
+    
+    padding: 0,
+    borderRadius: 10,
+    marginBottom: 5,
+    marginHorizontal:5,
+    borderWidth: 0,
+    borderColor: '#373F47',
+    justifyContent:'space-between',
+    backgroundColor:'#f8f7f7',
+    marginTop:10,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    
+  
+  },
+  Tab:{
     flexDirection: 'row',
     padding: 0,
     borderRadius: 10,
@@ -129,15 +149,16 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderColor: '#373F47',
     justifyContent:'space-between',
-    backgroundColor:'#D9D9D9',
+    backgroundColor:'#f8f7f7',
     marginTop:10,
+    height:'65%'
   },
   settingTabText:{
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 17,
     marginTop: 0,
-    color:"#312651",
+    color:"#000000",
     marginLeft:0,
     marginTop:3,
   },

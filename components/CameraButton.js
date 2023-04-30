@@ -5,14 +5,14 @@ import { Feather } from '@expo/vector-icons';
 const CameraButton = ({ onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Feather name="camera" size={24} color="white" />
+      <Feather name="camera" size={24} color="black" />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#373F47',
+    backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
     width: 50,
