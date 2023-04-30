@@ -20,16 +20,13 @@ export default function PlaneList({navigation}) {
 
   return (
     <View style={styles.container}>
-      {/* Planes list area */}
       <View style={styles.planesWrapper}>
-        {/* pull down to refresh */}
         <ScrollView style={styles.ScrollView} persistentScrollbar={true} 
           refreshControl={<RefreshControl refreshing={refreshing} 
             onRefresh={() => {
               setRefreshing(true);
               setOnce(true);
         }} />}>
-          {/* Plane items (supports 6 planes currently)*/}
           <View style={styles.items} >
             {ListOfPlanes}
           </View>
@@ -44,7 +41,6 @@ export default function PlaneList({navigation}) {
       
   );
 }
-
 const TitleHeight = Platform.OS === 'android' ? 60 : 100;
 
 const styles = StyleSheet.create({
@@ -52,12 +48,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
+    // borderTopWidth: 0.5,
   },
   ScrollView: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 10,
   },
-
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
@@ -74,9 +69,8 @@ const styles = StyleSheet.create({
   planesWrapper: {
     paddingTop: 10,
     paddingHorizontal: 10,
-    paddingBottom: 10,
     // borderRadius: 10,
-    height: Dimensions.get('window').height - TitleHeight,
+    height: Dimensions.get('window').height - TitleHeight - 100,
   },
 
   sectionTitle: {
