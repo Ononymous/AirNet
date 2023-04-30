@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     marginBottom: 0,
     borderWidth: 0,
-    gap:'20%',
+    gap:'15%',
   },
   infoContainer:{
     flexDirection: 'column',
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.4,
     shadowRadius: 5,
+    backgroundColor:'#ffffff',
   
 
   },
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.5,
     shadowRadius: 5,
+
   },
   switchStyle:{
     marginRight:10,
