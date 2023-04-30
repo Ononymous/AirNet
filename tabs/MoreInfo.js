@@ -27,13 +27,16 @@ export default function MoreInfo({route, navigation}) {
   }, [navigation, plane.flightNumber]);
 
   return (
-  
+    <LinearGradient colors={['#fafafa', '#a8b2e4']} style={styles.container}>
     <View style={styles.newContainer}>
-      <LinearGradient colors={['#a6fde8', '#acb6e5']} style={styles.container}>
+      
       <ScrollView>
         <View style={styles.container}>
-          <Image source={{ uri: plane.imgUrl }} style={styles.image} />
- 
+          <View style={styles.imageContainer}>
+
+          
+          <Image source={{ uri: plane.imgUrl }} style={styles.image} backgroundColor='white' />
+          </View>
           <View style={styles.infoContainer}>
             <FlightInfo str='Aircraft Type'/>
             <Text style={styles.BiggerText}>{plane.planeType + '\n'}</Text>
@@ -75,8 +78,9 @@ export default function MoreInfo({route, navigation}) {
         </View>     
         
       </ScrollView>
-      </LinearGradient>
+     
     </View>
+    </LinearGradient>
     
   );
 }
@@ -84,7 +88,7 @@ export default function MoreInfo({route, navigation}) {
 const styles = StyleSheet.create({
   newContainer:{
 
-    height: '100%',
+    height: "100%",
   },
 
   // Ray's contant styles from here on
@@ -95,26 +99,46 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     marginBottom: 0,
     borderWidth: 0,
-    gap:'28%',
+    gap:'20%',
   },
   infoContainer:{
     flexDirection: 'column',
     alignContent:'center',
     padding: 3,
-    backgroundColor:'#E7FDF6',
+    backgroundColor:'#ffffff',
     borderRadius: 10,
     marginBottom: 5,
     marginHorizontal:4,
     borderWidth: 0,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.4,
+    shadowRadius: 5,
+  
 
+  },
+  imageContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+  },
+  switchStyle:{
+    marginRight:10,
+    marginTop:5,
   },
   image: {
     width: Dimensions.get('window').width - 28,
     height: 150,
     borderRadius: 10,
     resizeMode: 'cover',
-    alignSelf:'center',
+    alignSelf: 'center',
     marginBottom: 5,
+   
+
   },
   infoContainer3:{
     flexDirection: 'row',
@@ -133,14 +157,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 25,
     marginTop: 0,
-    color:'#36454F',
+    color:'#000000',
   },
   originText: {
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 15,
     marginTop: 0,
-    color:'#36454F',
+    color:'#000000',
 
   },
   NUM:{
@@ -148,7 +172,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 17,
     marginTop: 0,
-    color:'#36454F',
+    color:'#000000',
 
   },
   backBtn:{

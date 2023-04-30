@@ -8,6 +8,7 @@ import SignInButton from "../components/SignInButton";
 import { supabase } from "../backend/supabase";
 import SessionContext from "../backend/SessionContext";
 import 'react-native-gesture-handler';
+import SwitchBar from '../components/SwitchBar';
 
 export default function Setting({navigation}) {
 
@@ -24,24 +25,24 @@ export default function Setting({navigation}) {
             <Text style={styles.userName}>{session?.user?.email}</Text>
           </>}
           <View  style={styles.settingTab} >
-              <View style={styles.settingTab}>
+              <View style={styles.Tab}>
                 <Ionicons name='notifications-outline' size={24} color="black" />
                 <Text style={styles.settingTabText}> Notifications</Text>
               </View>
-              <Switch style={styles.switchStyle}/>
+              <SwitchBar/>
           </View>
 
           <View  style={styles.settingTab} >
-              <View style={styles.settingTab}>
+              <View style={styles.Tab}>
                 <MaterialIcons name="gps-fixed" size={24} color="black" />
                 <Text style={styles.settingTabText}> GPS</Text>
               </View>
-              <Switch style={styles.switchStyle}/>
+              <SwitchBar/>
           </View>
 
           <TouchableOpacity onPress={()=>navigation.navigate('MyFavorite')}>
             <View  style={styles.settingTab} >
-              <View style={styles.settingTab}>
+              <View style={styles.Tab}>
                 <FontAwesome5 name="star" size={24} color="black" />
                 <Text style={styles.settingTabText}> Manage My Favorites</Text>
               </View>
@@ -51,7 +52,7 @@ export default function Setting({navigation}) {
 
           <TouchableOpacity onPress={()=>navigation.navigate('About')}>
             <View  style={styles.settingTab} >
-              <View style={styles.settingTab}>
+              <View style={styles.Tab}>
                 <AntDesign name="infocirlceo" size={24} color="black" />
                 <Text style={styles.settingTabText}> About</Text>
               </View>
@@ -122,6 +123,25 @@ const styles = StyleSheet.create({
   },
   settingTab:{
     flexDirection: 'row',
+    
+    padding: 0,
+    borderRadius: 10,
+    marginBottom: 5,
+    marginHorizontal:5,
+    borderWidth: 0,
+    borderColor: '#373F47',
+    justifyContent:'space-between',
+    backgroundColor:'#f8f7f7',
+    marginTop:10,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    
+  
+  },
+  Tab:{
+    flexDirection: 'row',
     padding: 0,
     borderRadius: 10,
     marginBottom: 5,
@@ -131,6 +151,7 @@ const styles = StyleSheet.create({
     justifyContent:'space-between',
     backgroundColor:'#f8f7f7',
     marginTop:10,
+    height:'65%'
   },
   settingTabText:{
     textAlign: 'center',

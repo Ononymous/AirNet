@@ -75,12 +75,12 @@ export default function App() {
             <Stack.Screen name="MoreInfo" component={MoreInfo} options={({ navigation }) => ({
               headerStyle: {
                 height: TitleHeight,
-                backgroundColor: '#373F47',
+                backgroundColor: '#ffffff',
               },
               headerTitleStyle: {
                 fontSize: 24,
                 fontWeight: 'bold',
-                color: '#fff',
+                color: '#000000',
               },
               headerLeft: () => (
                 <BackButton onPress={() => navigation.goBack()} />
