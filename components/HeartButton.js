@@ -32,7 +32,7 @@ const HeartButton = ({id}) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
     width: 50,

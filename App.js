@@ -10,6 +10,7 @@ import Setting from './tabs/Setting';
 import MoreInfo from './tabs/MoreInfo';
 import MyFavorite from './tabs/MyFavorite';
 import About from './tabs/About';
+import BottomMenu from './components/BottomMenu';
 
 import SettingButton from './components/SettingButton';
 import BackButton from './components/BackButton';
@@ -114,16 +115,16 @@ async function updateFavoritePlanes() {
                 title: 'Nearby Planes',
                 headerStyle: {
                   height: TitleHeight,
-                  backgroundColor: '#373F47',
+                  backgroundColor: '#FFFFFF',
                 },  
                 headerTitleStyle: {
                   fontSize: 24,
                   fontWeight: 'bold',
-                  color: '#ffffff',
+                  color: '#000000',
                 },
-                headerRight: () => (
-                  <SettingButton onPress={() => navigation.navigate("Setting")} />
-                ),
+                // headerRight: () => (
+                //   <SettingButton onPress={() => navigation.navigate("Setting")} />
+                // ),
               })}/>
               <Stack.Screen name="Setting" component={Setting} options={({ navigation }) => ({
                 title: 'Setting',
