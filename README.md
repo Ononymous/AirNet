@@ -12,7 +12,7 @@ AirNet was founded in 2023 by Gen Tamada, Ray Du, Tommy So, and Bryce Wang. Sinc
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
+- [Our Journey](#our-journey)
 - [Credits](#credits)
 - [License](#license)
 
@@ -42,9 +42,9 @@ $ npm start
 
 Provide examples and instructions on how to use your project.
 
-## Contributing
+## Our Journey
 
-Provide guidelines on how others can contribute to your project, including information on how to submit bug reports, feature requests, or pull requests.
+Provide a brief description of your journey, including any challenges you faced and how you overcame them.
 
 ## Credits
 
