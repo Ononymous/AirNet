@@ -44,7 +44,8 @@ Provide examples and instructions on how to use your project.
 
 ## Our Journey
 
-Provide a brief description of your journey, including any challenges you faced and how you overcame them.
+We started our journey by coming up with a design using [Figma](https://www.figma.com/file/YMjlqVdLgLOY0CEvBPn5Dx/AirNet?t=KbLNHAjL61YLaZ0a-1), a tool for front-end design. We used this as a guide to implement our front-end design.
+![AirNet App Screenshot](./screenshots/AirNetFigma_v1.png)
 
 ## Credits
 
