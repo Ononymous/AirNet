@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const Button = ({ onPress }) => {
+const BackButton = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.button}>
       <Ionicons name="arrow-back" size={24} color="black" />
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Button;
+export default BackButton;

@@ -13,8 +13,8 @@ export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
 
     useEffect(() => {
         if (once) {
-            setCounter(!counter);
             setOnce(false);
+            setCounter(!counter);
         }
     }, [location])
 
@@ -28,6 +28,7 @@ export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
                     );
                     setPlaneData([])
                     for(id of planeIds) {
+                        if(once) return;
                         tempPlane = {
                             id: id,
                             hex: rawData[id][0],
@@ -45,7 +46,9 @@ export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
                             longitude: rawData[id][2],
                             speed: rawData[id][5],
                         }
+                        if(once) return;
                         tempPlane = await getSinglePlane(id, tempPlane)
+                        if(once) return;
                         setPlaneData((prev) => [...prev, tempPlane])
                     }
 				}

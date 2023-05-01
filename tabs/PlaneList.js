@@ -35,7 +35,7 @@ export default function PlaneList({navigation}) {
 
       {/* Bottom menu */}
       <View style={styles.bottomMenu}>
-        <BottomMenu />
+        <BottomMenu navigation={navigation} setOnce={setOnce} setRefreshing={setRefreshing} />
       </View>
     </View>
       
@@ -58,14 +58,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     height: '100%',
   },
-
-  titleWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    paddingHorizontal: 10,
-    height: TitleHeight,
-  },  
-
   planesWrapper: {
     paddingTop: 10,
     paddingHorizontal: 10,

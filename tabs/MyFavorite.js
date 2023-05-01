@@ -76,23 +76,13 @@ const TitleHeight = Platform.OS === 'android' ? 60 : 100;
 
 const styles = StyleSheet.create({
   ScrollView: {
-    backgroundColor: '#C3C9E9',
-    borderRadius: 10,
+    backgroundColor: '#FFFFFF',
   },
-
   container: {
     flex: 1,
-    backgroundColor: '#373F47',
+    backgroundColor: '#FFFFFF',
     height: '100%',
   },
-
-  titleWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    height: TitleHeight,
-  },  
 
   planesWrapper: {
     paddingTop: 10,
@@ -108,7 +98,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   items: {
-    backgroundColor: '#C3C9E9',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     padding: 10,
   },

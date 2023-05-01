@@ -256,13 +256,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
   },
-  titleWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    height: TitleHeight,
-  },  
   lowerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

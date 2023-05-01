@@ -1,24 +1,24 @@
-import React, { useState, useContext } from 'react';
-import { StyleSheet, View, Image, Text, ImageBackground, TouchableOpacity, Platform } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import CameraButton from './CameraButton';
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 
-const BottomMenu = ({ onPressButton1, onPressButton2, onPressButton3 }) => {
+const BottomMenu = ({ navigation, setOnce, setRefreshing }) => {
   return (
     <View style={styles.menuBar}>
-      <TouchableOpacity style={styles.menuBarButton} onPress={onPressButton1}>
+      <TouchableOpacity style={styles.menuBarButton} onPress={() => {navigation.navigate('MyFavorite');}}>
         <View style={styles.burger}>
           <AntDesign name="hearto" size={27} color="black" />
         </View>
         <Text style={styles.menuBarButtonText}>Favorites</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.menuBarButton} onPress={onPressButton2}>
+      <TouchableOpacity style={styles.menuBarButton} onPress={() => {setOnce(true); setRefreshing(true);}}>
         <View style={styles.refresh}>
           <FontAwesome name="refresh" size={30} color="white"/>
         </View>
         <Text style={styles.menuBarButtonText}>Refresh</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.menuBarButton} onPress={onPressButton3}>
+      <TouchableOpacity style={styles.menuBarButton} onPress={() => {navigation.navigate('Setting');}}>
         <View style={styles.burger}>
           <Entypo name="menu" size={24} color="black" />
         </View>
