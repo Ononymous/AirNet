@@ -4,7 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import FavoritePlanesContext from '../backend/FavoritePlanesContext';
 import SessionContext from '../backend/SessionContext';
 
-const HeartButton = ({id}) => {
+const HeartButton = ({id, dark}) => {
 	const { favoritePlanes, setFavoritePlanes, loading, setLoading } = useContext(FavoritePlanesContext);
 	const [heartIcon, setHeartIcon] = useState('hearto');
 
@@ -25,14 +25,13 @@ const HeartButton = ({id}) => {
 
   return (
     <TouchableOpacity style={styles.button} onPress={handlePress}>
-      <AntDesign name={heartIcon} size={27} color="white" />
+      {dark? <AntDesign name={heartIcon} size={27} color="black" /> : <AntDesign name={heartIcon} size={27} color="white" />}
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    // backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
     width: 50,

@@ -10,12 +10,8 @@ import Setting from './tabs/Setting';
 import MoreInfo from './tabs/MoreInfo';
 import MyFavorite from './tabs/MyFavorite';
 import About from './tabs/About';
-import BottomMenu from './components/BottomMenu';
-
-import SettingButton from './components/SettingButton';
 import BackButton from './components/BackButton';
-import CameraButton from './components/CameraButton';
-import HeartButton from './components/HeartButton';
+import OptionsButton from './components/OptionsButton';
 
 import 'react-native-url-polyfill/auto';
 import Auth from './backend/Auth';
@@ -24,6 +20,7 @@ import { supabase } from './backend/supabase';
 
 import SessionContext from './backend/SessionContext';
 import FavoritePlanesContext from './backend/FavoritePlanesContext';
+import OptionContext from './backend/OptionContext';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +28,8 @@ export default function App() {
   const [favoritePlanes, setFavoritePlanes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState(null);
+  const [sort, setSort] = useState('none');
+  const [distance, setDistance] = useState(0.3);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -108,26 +107,72 @@ async function updateFavoritePlanes() {
   return (
     <View style={styles.container}>
       <SessionContext.Provider value={session}>
-        <FavoritePlanesContext.Provider value={{ favoritePlanes, setFavoritePlanes, loading, setLoading }}>
-          <NavigationContainer>
-            <Stack.Navigator initialRouteName="PlaneList">
-              <Stack.Screen name="PlaneList" component={PlaneList} options={({ navigation }) => ({
-                title: 'Nearby Planes',
+      <FavoritePlanesContext.Provider value={{ favoritePlanes, setFavoritePlanes, loading, setLoading }}>
+      <OptionContext.Provider value={{ sort, setSort, distance, setDistance }}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="PlaneList">
+            <Stack.Screen name="PlaneList" component={PlaneList} options={({ navigation }) => ({
+              title: 'Nearby Planes',
+              headerStyle: {
+                height: TitleHeight,
+                backgroundColor: '#FFFFFF',
+              },  
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#000000',
+              },
+              headerRight: () => (
+                <OptionsButton />
+              ),
+            })}/>
+            <Stack.Screen name="Setting" component={Setting} options={({ navigation }) => ({
+              title: 'Setting',
+              headerStyle: {
+                height: TitleHeight,
+                backgroundColor: '#ffffff',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#000000',
+              },
+              headerLeft: () => (
+                <BackButton onPress={() => navigation.goBack()} />
+              ),
+            })}/>
+            <Stack.Screen name="MoreInfo" component={MoreInfo} options={({ navigation }) => ({
+              headerStyle: {
+                height: TitleHeight,
+                backgroundColor: '#ffffff',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#000000',
+              },
+              headerLeft: () => (
+                <BackButton onPress={() => navigation.goBack()} />
+              ),
+            })}/>
+            {session && session.user ? 
+              <Stack.Screen name='MyFavorite' component={MyFavorite} options={({ navigation }) => ({
+                headerTitle:'My Favorites',
                 headerStyle: {
                   height: TitleHeight,
-                  backgroundColor: '#FFFFFF',
-                },  
+                  backgroundColor: '#ffffff',
+                },
                 headerTitleStyle: {
                   fontSize: 24,
                   fontWeight: 'bold',
                   color: '#000000',
                 },
-                // headerRight: () => (
-                //   <SettingButton onPress={() => navigation.navigate("Setting")} />
-                // ),
-              })}/>
-              <Stack.Screen name="Setting" component={Setting} options={({ navigation }) => ({
-                title: 'Setting',
+                headerLeft: () => (
+                  <BackButton onPress={() => navigation.goBack()} />
+                ),
+              })}/> : 
+              <Stack.Screen name='MyFavorite' component={Auth} options={({ navigation }) => ({
+                headerTitle:'Authentication',
                 headerStyle: {
                   height: TitleHeight,
                   backgroundColor: '#ffffff',
@@ -141,7 +186,25 @@ async function updateFavoritePlanes() {
                   <BackButton onPress={() => navigation.goBack()} />
                 ),
               })}/>
-              <Stack.Screen name="MoreInfo" component={MoreInfo} options={({ navigation }) => ({
+            }
+            {session && session.user ? 
+              <Stack.Screen name='User' component={Account} options={({ navigation }) => ({
+                headerTitle:'Account',
+                headerStyle: {
+                  height: TitleHeight,
+                  backgroundColor: '#ffffff',
+                },
+                headerTitleStyle: {
+                  fontSize: 24,
+                  fontWeight: 'bold',
+                  color: '#000000',
+                },
+                headerLeft: () => (
+                  <BackButton onPress={() => navigation.goBack()} />
+                ),
+              })}/> : 
+              <Stack.Screen name='User' component={Auth} options={({ navigation }) => ({
+                headerTitle:'Authentication',
                 headerStyle: {
                   height: TitleHeight,
                   backgroundColor: '#ffffff',
@@ -155,88 +218,26 @@ async function updateFavoritePlanes() {
                   <BackButton onPress={() => navigation.goBack()} />
                 ),
               })}/>
-              {session && session.user ? 
-                <Stack.Screen name='MyFavorite' component={MyFavorite} options={({ navigation }) => ({
-                  headerTitle:'My Favorites',
-                  headerStyle: {
-                    height: TitleHeight,
-                    backgroundColor: '#ffffff',
-                  },
-                  headerTitleStyle: {
-                    fontSize: 24,
-                    fontWeight: 'bold',
-                    color: '#000000',
-                  },
-                  headerLeft: () => (
-                    <BackButton onPress={() => navigation.goBack()} />
-                  ),
-                })}/> : 
-                <Stack.Screen name='MyFavorite' component={Auth} options={({ navigation }) => ({
-                  headerTitle:'Authentication',
-                  headerStyle: {
-                    height: TitleHeight,
-                    backgroundColor: '#ffffff',
-                  },
-                  headerTitleStyle: {
-                    fontSize: 24,
-                    fontWeight: 'bold',
-                    color: '#000000',
-                  },
-                  headerLeft: () => (
-                    <BackButton onPress={() => navigation.goBack()} />
-                  ),
-                })}/>
-              }
-              {session && session.user ? 
-                <Stack.Screen name='User' component={Account} options={({ navigation }) => ({
-                  headerTitle:'Account',
-                  headerStyle: {
-                    height: TitleHeight,
-                    backgroundColor: '#ffffff',
-                  },
-                  headerTitleStyle: {
-                    fontSize: 24,
-                    fontWeight: 'bold',
-                    color: '#000000',
-                  },
-                  headerLeft: () => (
-                    <BackButton onPress={() => navigation.goBack()} />
-                  ),
-                })}/> : 
-                <Stack.Screen name='User' component={Auth} options={({ navigation }) => ({
-                  headerTitle:'Authentication',
-                  headerStyle: {
-                    height: TitleHeight,
-                    backgroundColor: '#ffffff',
-                  },
-                  headerTitleStyle: {
-                    fontSize: 24,
-                    fontWeight: 'bold',
-                    color: '#000000',
-                  },
-                  headerLeft: () => (
-                    <BackButton onPress={() => navigation.goBack()} />
-                  ),
-                })}/>
-              }
-              <Stack.Screen name='About' component={About} options={({ navigation }) => ({
-                headerTitle:'About this App',
-                headerStyle: {
-                  height: TitleHeight,
-                  backgroundColor: '#ffffff',
-                },
-                headerTitleStyle: {
-                  fontSize: 24,
-                  fontWeight: 'bold',
-                  color: '#000000',
-                },
-                headerLeft: () => (
-                  <BackButton onPress={() => navigation.goBack()} />
-                ),
-              })}/>
-            </Stack.Navigator>
-          </NavigationContainer>
-        </FavoritePlanesContext.Provider>
+            }
+            <Stack.Screen name='About' component={About} options={({ navigation }) => ({
+              headerTitle:'About this App',
+              headerStyle: {
+                height: TitleHeight,
+                backgroundColor: '#ffffff',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#000000',
+              },
+              headerLeft: () => (
+                <BackButton onPress={() => navigation.goBack()} />
+              ),
+            })}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </OptionContext.Provider>
+      </FavoritePlanesContext.Provider>
       </SessionContext.Provider>
     </View>
   );

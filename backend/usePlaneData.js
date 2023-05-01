@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import useLocation from "./useLocation";
 import getPlanes from "./getPlanes";
 import getSinglePlane from "./getSinglePlane";
+import OptionContext from "./OptionContext";
 
 export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
-	const location = useLocation();
+	const { distance } = useContext(OptionContext);
+    const location = useLocation();
     const [counter, setCounter] = useState(true);
 	const [planeData, setPlaneData] = useState([]);
 
@@ -21,7 +23,7 @@ export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
 	useEffect(() => {
 		if (location) {
 			(async () => {
-				const rawData = await getPlanes(lat, lng);
+				const rawData = await getPlanes(lat, lng, distance);
 				if (rawData) {
                     const planeIds = Object.keys(rawData).filter(
                         (key) => key !== "full_count" && key !== "version" && key !== "stats"

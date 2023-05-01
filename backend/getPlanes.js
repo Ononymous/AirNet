@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export default async function getPlanes(lat, lng) {
+export default async function getPlanes(lat, lng, distance) {
     if(lat === null || lng === null) return null;
 
-    const offset = 0.2;
+    const offset = distance;
 
     const nLat = lat + offset
     const nLng = lng + offset

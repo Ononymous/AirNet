@@ -13,10 +13,9 @@ export default function MoreInfo({route, navigation}) {
   const { plane } = route.params;
   const renderHeaderRight = (id) => {
     if (session && session.user) {
-      // console.log(id)
       return (
         <View style={styles.lowerContainer}>
-          <HeartButton id={id} />
+          <HeartButton id={id} dark={true}/>
           <CameraButton onPress={() => alert('Camera pressed')} />
         </View>
       );
