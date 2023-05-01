@@ -12,7 +12,7 @@ export default function PlaneItem ({ plane, navigation }) {
     <TouchableOpacity onPress={() => navigation.navigate("MoreInfo", {plane: plane})}>
       <ImageBackground source={{ uri: imgUrl }} style={styles.image}>
         <View style={styles.buttonContainer}>
-          <HeartButton color="white" />
+          <HeartButton color="white" id={plane.id}/>
         </View>
         <Text style={styles.planeType}>{plane.planeType}</Text>
       </ImageBackground>
