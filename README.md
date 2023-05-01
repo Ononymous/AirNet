@@ -49,6 +49,9 @@ We started our journey by coming up with a design using [Figma](https://www.figm
 <br>
 Here is a screenshot of our first design:
 ![AirNet App Screenshot](./screenshots/AirNetFigma_v1.png)
+<br>
+<br>
+[Click Here](https://docs.google.com/presentation/d/13k8u5GwKJcpTi3HXs5ICFjLOTZJt4VP88dQwsHjMpXA/edit?usp=sharing) to view our mid-point presentation slides.
 
 ## Credits
 
