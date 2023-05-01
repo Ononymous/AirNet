@@ -46,6 +46,7 @@ Provide examples and instructions on how to use your project.
 
 We started our journey by coming up with a design using [Figma](https://www.figma.com/file/YMjlqVdLgLOY0CEvBPn5Dx/AirNet?t=KbLNHAjL61YLaZ0a-1), a tool for front-end design. We used this as a guide to implement our front-end design.
 <br>
+<br>
 Here is a screenshot of our first design:
 ![AirNet App Screenshot](./screenshots/AirNetFigma_v1.png)
 
