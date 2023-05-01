@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import BackButton from './BackButton';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
@@ -8,7 +8,7 @@ import OptionContext from '../backend/OptionContext';
 export default function FilterOptions({setModalVisible}) {
     const { sort, setSort, distance, setDistance } = useContext(OptionContext);
     return (
-        <View style={styles.modalContainer}>
+        <SafeAreaView style={styles.modalContainer}>
             <View style={styles.modalTitleWrapper}>
                 <BackButton onPress={() => setModalVisible(false)} />
                 <Text style={styles.modalTitle}>Options</Text>
@@ -69,7 +69,7 @@ export default function FilterOptions({setModalVisible}) {
                     // onSlidingComplete={value => setDistance(value)}
                 />
             </View>
-        </View>
+        </SafeAreaView>
     );
 
 }
