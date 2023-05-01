@@ -11,6 +11,9 @@ export default function PlaneItem ({ plane, navigation }) {
   return (
     <TouchableOpacity onPress={() => navigation.navigate("MoreInfo", {plane: plane})}>
       <ImageBackground source={{ uri: imgUrl }} style={styles.image}>
+        <View style={styles.buttonContainer}>
+          <HeartButton color="white" />
+        </View>
         <Text style={styles.planeType}>{plane.planeType}</Text>
       </ImageBackground>
     </TouchableOpacity>
@@ -37,5 +40,12 @@ const styles = StyleSheet.create({
     bottom: 0,
     marginLeft: 10,
     marginBottom: 10,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    margin: 5,
+    backgroundColor: 'transparent',
   },
 });
