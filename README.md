@@ -22,15 +22,21 @@ AirNet was founded in 2023 by Gen Tamada, Ray Du, Tommy So, and Bryce Wang. Sinc
 Provide instructions on how to install and set up your project, including any dependencies that need to be installed.
 
 1. Clone this repository:
-    ```shell
+```shell
 $ git clone https://github.com/your-username/your-project.git
 ```
 2. Change into the project directory:
+```shell
 $ cd your-project
+```
 3. Install dependencies:
+```shell
 $ npm install
+```
 4. Start the app:
+```shell
 $ npm start
+```
 
 ## Usage
 
