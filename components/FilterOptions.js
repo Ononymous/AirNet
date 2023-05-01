@@ -32,7 +32,7 @@ export default function FilterOptions({setModalVisible}) {
                 <TouchableOpacity style={styles.modalSortOption} onPress={() => setSort('callsign')}>
                     <View style={styles.modalSortOptionWrapper}>
                         <Ionicons name="text" size={24} color="black" />
-                        <Text style={styles.modalText}>Callsign</Text>
+                        <Text style={styles.modalText}>Flight Number</Text>
                     </View>
                     {sort === 'callsign' ? <Ionicons name="ios-radio-button-on" size={24} color="black" /> : <Ionicons name="ios-radio-button-off" size={24} color="black" />}
                 </TouchableOpacity>
@@ -42,6 +42,13 @@ export default function FilterOptions({setModalVisible}) {
                         <Text style={styles.modalText}>Speed</Text>
                     </View>
                     {sort === 'speed' ? <Ionicons name="ios-radio-button-on" size={24} color="black" /> : <Ionicons name="ios-radio-button-off" size={24} color="black" />}
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.modalSortOption} onPress={() => setSort('airplane')}>
+                    <View style={styles.modalSortOptionWrapper}>
+                        <Ionicons name="airplane-outline" size={24} color="black" />
+                        <Text style={styles.modalText}>Plane Model</Text>
+                    </View>
+                    {sort === 'airplane' ? <Ionicons name="ios-radio-button-on" size={24} color="black" /> : <Ionicons name="ios-radio-button-off" size={24} color="black" />}
                 </TouchableOpacity>
             </View>
             <View style={styles.modalSortWrapper}>

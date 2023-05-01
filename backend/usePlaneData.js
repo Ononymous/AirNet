@@ -5,7 +5,7 @@ import getSinglePlane from "./getSinglePlane";
 import OptionContext from "./OptionContext";
 
 export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
-	const { distance } = useContext(OptionContext);
+	const { distance, sort } = useContext(OptionContext);
     const location = useLocation();
     const [counter, setCounter] = useState(true);
 	const [planeData, setPlaneData] = useState([]);
@@ -20,6 +20,27 @@ export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
         }
     }, [location])
 
+    const sortPlanes = (planes, sortType) => {
+        if (sortType === "none") return planes;
+    
+        return planes.sort((a, b) => {
+            switch (sortType) {
+                case "distance":
+                    const distA = Math.sqrt((a.latitude - lat) ** 2 + (a.longitude - lng) ** 2);
+                    const distB = Math.sqrt((b.latitude - lat) ** 2 + (b.longitude - lng) ** 2);
+                    return distA - distB;
+                case "callsign":
+                    return a.flightNumber.localeCompare(b.flightNumber);
+                case "speed":
+                    return b.speed - a.speed;
+                case "airplane":
+                    return a.planeType.localeCompare(b.planeType);
+                default:
+                    return 0;
+            }
+        });
+      };
+
 	useEffect(() => {
 		if (location) {
 			(async () => {
@@ -28,10 +49,10 @@ export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
                     const planeIds = Object.keys(rawData).filter(
                         (key) => key !== "full_count" && key !== "version" && key !== "stats"
                     );
-                    setPlaneData([])
+                    const planes = [];
                     for(id of planeIds) {
                         if(once) return;
-                        tempPlane = {
+                        const tempPlane = {
                             id: id,
                             hex: rawData[id][0],
                             imgUrl: "https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png",
@@ -49,10 +70,11 @@ export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
                             speed: rawData[id][5],
                         }
                         if(once) return;
-                        tempPlane = await getSinglePlane(id, tempPlane)
+                        const updatedPlane = await getSinglePlane(id, tempPlane)
                         if(once) return;
-                        setPlaneData((prev) => [...prev, tempPlane])
+                        planes.push(updatedPlane);
                     }
+                    setPlaneData(sortPlanes(planes, sort));
 				}
                 setRefreshing(false);
 			})();
