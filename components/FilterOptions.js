@@ -55,7 +55,7 @@ export default function FilterOptions({setModalVisible}) {
                 <Text style={styles.modalTitle}>Filter</Text>
                 <View style={styles.modalSortOptionWrapper}>
                     <MaterialCommunityIcons name="map-marker-radius-outline" size={24} color="black" />
-                    <Text style={styles.modalText}>Distance: {distance.toFixed(1)} degrees</Text>
+                    <Text style={styles.modalText}>Search Radius: {(distance*62).toFixed(1)} miles</Text>
                 </View>
                 <Slider
                     style={styles.modalSlider}
@@ -63,7 +63,6 @@ export default function FilterOptions({setModalVisible}) {
                     lowerLimit={0.1}
                     maximumValue={2}
                     upperLimit={2}
-                    step={.1}
                     value={distance}
                     onValueChange={value => setDistance(value)}
                     // onSlidingComplete={value => setDistance(value)}

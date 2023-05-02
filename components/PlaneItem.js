@@ -1,20 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { StyleSheet, View, Image, Text, ImageBackground, TouchableOpacity } from 'react-native';
-import CameraButton from './CameraButton';
 import HeartButton from './HeartButton';
-import MoreInfoButton from './MoreInfoButton';
-import SessionContext from '../backend/SessionContext';
 
 export default function PlaneItem ({ plane, navigation }) {
-  const session = useContext(SessionContext);
-  const imgUrl = plane.imgUrl? plane.imgUrl : "https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png"
   return (
     <TouchableOpacity onPress={() => navigation.navigate("MoreInfo", {plane: plane})}>
-      <ImageBackground source={{ uri: imgUrl }} style={styles.image}>
+      <ImageBackground source={{ uri: plane?.imgUrl? plane.imgUrl : "https://www.macmillandictionary.com/us/external/slideshow/full/Grey_full.png" }} style={styles.image}>
         <View style={styles.buttonContainer}>
-          <HeartButton color="white" id={plane.id}/>
+          <HeartButton color="white" id={plane?.id? plane.id:0}/>
         </View>
-        <Text style={styles.planeType}>{plane.planeType}</Text>
+        <Text style={styles.planeType}>{plane?.planeType? plane.planeType:"Unknown"}</Text>
       </ImageBackground>
     </TouchableOpacity>
   );

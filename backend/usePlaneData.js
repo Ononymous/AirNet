@@ -3,6 +3,7 @@ import useLocation from "./useLocation";
 import getPlanes from "./getPlanes";
 import getSinglePlane from "./getSinglePlane";
 import OptionContext from "./OptionContext";
+import { Alert } from "react-native";
 
 export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
 	const { distance, sort } = useContext(OptionContext);
@@ -49,6 +50,11 @@ export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
                     const planeIds = Object.keys(rawData).filter(
                         (key) => key !== "full_count" && key !== "version" && key !== "stats"
                     );
+                    // only take the first 20 planes if there are more than 20
+                    if (planeIds.length > 30) {
+                        planeIds.splice(30);
+                        Alert.alert("Too many requests!", "Only the first 30 planes are shown.")
+                    }
                     const planes = [];
                     for(id of planeIds) {
                         if(once) return;
