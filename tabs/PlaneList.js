@@ -35,7 +35,7 @@ export default function PlaneList({navigation}) {
 
       {/* Bottom menu */}
       <View style={styles.bottomMenu}>
-        <BottomMenu navigation={navigation} setOnce={setOnce} setRefreshing={setRefreshing} />
+        <BottomMenu navigation={navigation} setOnce={setOnce} setRefreshing={setRefreshing} refreshing={refreshing}/>
       </View>
     </View>
       

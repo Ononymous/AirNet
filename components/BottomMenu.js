@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import CameraButton from './CameraButton';
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 
-const BottomMenu = ({ navigation, setOnce, setRefreshing }) => {
+const BottomMenu = ({ navigation, setOnce, setRefreshing, refreshing }) => {
   return (
     <View style={styles.menuBar}>
       <TouchableOpacity style={styles.menuBarButton} onPress={() => {navigation.navigate('MyFavorite');}}>
@@ -12,12 +12,19 @@ const BottomMenu = ({ navigation, setOnce, setRefreshing }) => {
         </View>
         <Text style={styles.menuBarButtonText}>Favorites</Text>
       </TouchableOpacity>
+      {!refreshing?
       <TouchableOpacity style={styles.menuBarButton} onPress={() => {setOnce(true); setRefreshing(true);}}>
         <View style={styles.refresh}>
           <FontAwesome name="refresh" size={30} color="white"/>
         </View>
         <Text style={styles.menuBarButtonText}>Refresh</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>:
+      <TouchableOpacity style={styles.menuBarButton}>
+      <View style={styles.refreshing}>
+        <FontAwesome name="refresh" size={30} color="gray"/>
+      </View>
+      <Text style={styles.menuBarButtonText}>Refresh</Text>
+    </TouchableOpacity>}
       <TouchableOpacity style={styles.menuBarButton} onPress={() => {navigation.navigate('Setting');}}>
         <View style={styles.burger}>
           <Entypo name="menu" size={24} color="black" />
@@ -49,6 +56,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   refresh: {
+    backgroundColor: '#0f0c0c',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 30,
+  },
+  refreshing:{
     backgroundColor: '#0f0c0c',
     alignItems: 'center',
     justifyContent: 'center',
