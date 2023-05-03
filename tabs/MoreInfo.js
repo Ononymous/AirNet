@@ -35,8 +35,6 @@ export default function MoreInfo({route, navigation}) {
     <LinearGradient colors={['#71c5ee', '#ffffff']} style={styles.container} end={{x:0.65,y:0.65}}>
       <View style={styles.newContainer}>
       <ScrollView>
-      {/* E1ECFD */}
-      {/* B0c9F1 */}
       <Text style={styles.PlaneNUm}>{plane.flightNumber}</Text>
         <View style={styles.container}>
           <View style={styles.infoContainer}>
@@ -57,14 +55,6 @@ export default function MoreInfo({route, navigation}) {
            
             </View>
           </View>
-
-         
-            {/* <Text style={styles.originText}>{plane.originFull + ' (' + plane.origin + ')\n'} to {'\n' + plane.destinationFull + ' (' + plane.destination + ')\n'}</Text> */}
-
-          {/* <View style={styles.infoContainer}>
-            <FlightInfo str='Scheduled Arrival Time '/>
-            <Text style={styles.BiggerText}>{plane.scheduledArrival}{'\n'}</Text>
-          </View> */}
 
           <View style={styles.infoContainer3}>
 
@@ -184,7 +174,6 @@ const styles = StyleSheet.create({
     marginHorizontal:4,
     borderWidth: 0,
     backgroundColor:'#B0C9F1',
-    gap:"6%",
     
   },
   
