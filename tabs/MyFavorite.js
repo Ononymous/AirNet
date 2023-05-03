@@ -40,6 +40,7 @@ export default function MyFavorite({navigation}) {
 
   useEffect(() => {
     (async () => {
+      setRefreshing(true);
       const planes = [];
       for(id of favoritePlanes) {
         tempPlane.id = id;
@@ -51,10 +52,6 @@ export default function MyFavorite({navigation}) {
       setRefreshing(false);
     })();
   }, [counter]);
-
-  useEffect(() => {
-    // console.log(favoritePlanes)
-  }, [favoritePlanes]);
 
   return (
     <View style={styles.container}>

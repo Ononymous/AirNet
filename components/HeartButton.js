@@ -15,7 +15,7 @@ const HeartButton = ({id, dark}) => {
 		} else {
 			setHeartIcon('hearto');
 		}
-	}, [favoritePlanes]);
+	}, [favoritePlanes, id]);
 
   const handlePress = () => {
     if (id === null) return;

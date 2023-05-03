@@ -78,7 +78,7 @@ export default function usePlaneData(refreshing, setRefreshing, once, setOnce) {
                         if(once) return;
                         const updatedPlane = await getSinglePlane(id, tempPlane)
                         if(once) return;
-                        planes.push(updatedPlane);
+                        if (updatedPlane && updatedPlane.id) planes.push(updatedPlane);
                     }
                     setPlaneData(sortPlanes(planes, sort));
 				}

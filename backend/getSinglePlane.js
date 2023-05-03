@@ -3,6 +3,7 @@ import axios from 'axios';
 export default async function getSinglePlane(id, plane) {
     const fetchSinglePlane = async (id) => {
 		try {
+            if (!id) return plane;
 			const response = await axios.get(
 				"https://data-live.flightradar24.com/clickhandler/?version=1.5&flight=" + id
 			);
@@ -37,7 +38,7 @@ export default async function getSinglePlane(id, plane) {
                     planeType: planeModel? planeModel : 'N/A',
                     originFull: originFull,
                     destinationFull: destinationFull,
-                    flightNumber: flightNumber,
+                    flightNumber: flightNumber? flightNumber : 'N/A',
                     origin: origin? origin : 'N/A',
                     destination: destination? destination : 'N/A',
                 }

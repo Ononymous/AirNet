@@ -19,11 +19,13 @@ export default function MoreInfo({route, navigation}) {
   };
 
   useEffect(() => {
-    navigation.setOptions({
-      headerTitle: ``,
-      headerRight: () => renderHeaderRight(plane.id),
-    });
-  }, [navigation, plane.id]);
+    if (plane?.id){
+      navigation.setOptions({
+        headerTitle: ``,
+        headerRight: () => renderHeaderRight(plane?.id),
+      });
+    }
+  }, [navigation, plane?.id]);
   
   return (
     <LinearGradient colors={['#71c5ee', '#ffffff']} style={styles.container} end={{x:0.65,y:0.65}}>
