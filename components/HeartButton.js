@@ -5,6 +5,7 @@ import FavoritePlanesContext from '../backend/FavoritePlanesContext';
 import SessionContext from '../backend/SessionContext';
 
 const HeartButton = ({id, dark}) => {
+  const session = useContext(SessionContext);
 	const { favoritePlanes, setFavoritePlanes, loading, setLoading } = useContext(FavoritePlanesContext);
 	const [heartIcon, setHeartIcon] = useState('hearto');
 
@@ -17,6 +18,7 @@ const HeartButton = ({id, dark}) => {
 	}, [favoritePlanes]);
 
   const handlePress = () => {
+    if (id === null) return;
     const newFavoritePlanes = favoritePlanes.includes(id)
       ? favoritePlanes.filter((planeId) => planeId !== id)
       : [...favoritePlanes, id];
@@ -24,9 +26,11 @@ const HeartButton = ({id, dark}) => {
   };
 
   return (
+    session?
     <TouchableOpacity style={styles.button} onPress={handlePress}>
       {dark? <AntDesign name={heartIcon} size={27} color="black" /> : <AntDesign name={heartIcon} size={27} color="white" />}
     </TouchableOpacity>
+    :null
   );
 };
 

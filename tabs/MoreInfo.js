@@ -1,91 +1,86 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
 import FlightInfo from '../components/FlightInfo';
 import { useEffect } from 'react';
-import SessionContext from '../backend/SessionContext';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import HeartButton from '../components/HeartButton';
 import CameraButton from '../components/CameraButton';
 
 export default function MoreInfo({route, navigation}) {
-  const session = useContext(SessionContext);
   const { plane } = route.params;
   const renderHeaderRight = (id) => {
-    if (session && session.user) {
-      return (
-        <View style={styles.lowerContainer}>
-          <HeartButton id={id} dark={true}/>
-          <CameraButton onPress={() => alert('Camera pressed')} />
-        </View>
-      );
-    } else {
-      return <CameraButton onPress={() => alert('Camera pressed')} />;
-    }
+    return (
+      <View style={styles.lowerContainer}>
+        <HeartButton id={id} dark={true}/>
+        <CameraButton onPress={() => alert('Camera pressed')} />
+      </View>
+    );
   };
 
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: `${plane.flightNumber}`,
+      headerTitle: ``,
       headerRight: () => renderHeaderRight(plane.id),
     });
-  }, [navigation, plane.id, session]);
+  }, [navigation, plane.id]);
   
   return (
-    <LinearGradient colors={['#fafafa', '#a8b2e4']} style={styles.container}>
-    <View style={styles.newContainer}>
+    <LinearGradient colors={['#71c5ee', '#ffffff']} style={styles.container} end={{x:0.65,y:0.65}}>
+      <View style={styles.newContainer}>
       <ScrollView>
+      <Text style={styles.PlaneNUm}>{plane.flightNumber}</Text>
         <View style={styles.container}>
-
-          <View style={styles.imageContainer}>
+          <View style={styles.infoContainer}>
+            <View style={styles.PlaneType}>
+              <Text style={styles.PlaneTypeType}>Aircraft Type</Text>
+              <Text style={styles.PlaneTypeTxt}>{plane.planeType }</Text>
             <Image source={{ uri: plane.imgUrl }} style={styles.image} backgroundColor='white' />
+            <View style={styles.City}>
+              {/* Need to change the following two lines into city name */}
+              <Text style={styles.OriginDetail}>{plane.originFull}</Text>
+              <Text style={styles.DestinationDetail}>{plane.destinationFull}</Text>
+            </View>
+            <View style={styles.RouteContainer}>
+              <Text style={styles.originText}>{plane.origin}</Text>
+              <Image source={require('../assets/PlaneIcon.png')} style={styles.PlaneIcon}/>
+              <Text style={styles.originText}>{plane.destination}</Text>
+            </View>
+           
+            </View>
           </View>
-
-          <View style={styles.infoContainer}>
-            <FlightInfo str='Aircraft Type'/>
-            <Text style={styles.BiggerText}>{plane.planeType + '\n'}</Text>
-          </View>
-
-          <View style={styles.infoContainer}>
-            <FlightInfo str='Route'/>
-            <Text style={styles.originText}>{plane.originFull + ' (' + plane.origin + ')\n'} to {'\n' + plane.destinationFull + ' (' + plane.destination + ')\n'}</Text>
-          </View>
-
-          {/* <View style={styles.infoContainer}>
-            <FlightInfo str='Scheduled Arrival Time '/>
-            <Text style={styles.BiggerText}>{plane.scheduledArrival}{'\n'}</Text>
-          </View> */}
 
           <View style={styles.infoContainer3}>
 
-            <View style={styles.infoContainer} width={110}>
-              <FlightInfo str='Altitude'/>
-              <Text style={styles.NUM}>{plane.altitude} ft {'\n'}</Text>
+            <View style={styles.ALLContainer} width={110}>
+              <Text style={styles.NUM}>{plane.altitude !== 'N/A'? plane.altitude+' ft' : plane.altitude} {'\n'}</Text>
+              <Text style={styles.attribute}>Altitude</Text>
             </View>
             
-            <View style={styles.infoContainer} width={110}>
-              <FlightInfo str='Latitude'/>
-              <Text style={styles.NUM}>{plane.latitude} {'\n'}</Text>
+            <View style={styles.ALLContainer} width={110}>
+              <Text style={styles.NUM}>{plane.latitude !== 'N/A'? plane.latitude.toFixed(2) : plane.latitude} {'\n'}</Text>
+              <Text style={styles.attribute}>Latitude</Text>
             </View>
 
-            <View style={styles.infoContainer} width={110}>
-              <FlightInfo str='Longitude'/>
-              <Text style={styles.NUM}>{plane.longitude} {'\n'}</Text>
+            <View style={styles.ALLContainer} width={110}>
+              <Text style={styles.NUM}>{plane.longitude !== 'N/A'? plane.longitude.toFixed(2) : plane.longitude} {'\n'}</Text>
+              <Text style={styles.attribute}>Longitude</Text>
             </View>
 
           </View>
 
 
-          <View style={styles.infoContainer}>
-            <FlightInfo str='Aircraft Speed'/>
-            <Text style={styles.BiggerText}>{plane.speed} Knots {'\n'}</Text>
+          <View style={styles.SpeedContainer}>
+            <Text style={styles.SpeedText}>Aircraft Speed</Text>
+            <Text style={styles.SpeedNUM}>{plane.speed !== 'N/A'? plane.speed+' Knots' : plane.speed}</Text>
           </View>
 
         </View>     
         
       </ScrollView>
+      </View>
      
-    </View>
+
     </LinearGradient>
     
   );
@@ -93,6 +88,7 @@ export default function MoreInfo({route, navigation}) {
 
 const styles = StyleSheet.create({
   newContainer:{
+
     height: "100%",
   },
 
@@ -104,32 +100,83 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     marginBottom: 0,
     borderWidth: 0,
+   
+
+  },
+  PlaneIcon:{
+    flex: 1,
+    height: 30,
+    borderRadius: 10,
+    resizeMode: 'center',
+    alignSelf: 'center',
+    marginBottom: 5,
+  },
+  RouteContainer:{
+    flexDirection: 'row',
+    paddingBottom: 10,
+    marginBottom: 0,
+    justifyContent:"center",
+    marginHorizontal: "10%",
+    
+  },
+  City:{
+    flexDirection: 'row',
+    paddingTop: 10,
+    marginBottom: 0,
+    justifyContent:'space-between',
+    marginHorizontal: "10%",
+  },
+  PlaneNUm:{
+    color:'#ffffff',
+    fontSize: 48,
+    fontWeight: 'bold',
+    marginLeft:'5%',
+  },
+  PlaneType:{
+    flex: 1,
+    marginTop:'5%',
+
   },
   infoContainer:{
     flexDirection: 'column',
     alignContent:'center',
     padding: 3,
+    borderRadius: 10,
+    marginBottom: '3%',
+    marginHorizontal:4,
+    borderWidth: 0,
     backgroundColor:'#ffffff',
+
+  },
+  ALLContainer:{
+    flexDirection: 'column',
+    alignContent:'center',
+    padding: 3,
     borderRadius: 10,
     marginBottom: 5,
     marginHorizontal:4,
     borderWidth: 0,
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.4,
-    shadowRadius: 5,
-    backgroundColor:'#ffffff',
-  
-
+    backgroundColor:'#E1ECFD',
   },
+  SpeedContainer:{
+    flexDirection: 'column',
+    alignContent:'center',
+    justifyContent:'center',
+    borderRadius: 10,
+    marginBottom: 5,
+    marginHorizontal:4,
+    borderWidth: 0,
+    backgroundColor:'#B0C9F1',
+    
+  },
+  
   imageContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
+    backgroundColor:'#ffffff',
+    marginBottom:'5%',
+    borderRadius:10,
+    height:'70%',
+    
 
   },
   switchStyle:{
@@ -137,21 +184,36 @@ const styles = StyleSheet.create({
     marginTop:5,
   },
   image: {
-    width: Dimensions.get('window').width - 28,
+    width: Dimensions.get('window').width - 50,
     height: 150,
     borderRadius: 10,
     resizeMode: 'cover',
     alignSelf: 'center',
     marginBottom: 5,
+    
    
 
+  },
+  SpeedText:{
+    color:'#495e8e',
+    fontWeight:'bold',
+    textAlign: 'center',
+    fontSize:14,
+    marginTop:'2%'
+  },
+  SpeedNUM:{
+    color:'#495e8e',
+    fontWeight:'bold',
+    textAlign: 'center',
+    marginTop:'5%',
+    paddingBottom:'12%',
+    fontSize:40,
   },
   infoContainer3:{
     flexDirection: 'row',
     padding: 3,
-    marginBottom: 0,
-
-    justifyContent:"space-evenly"
+    marginBottom:'3%',
+    justifyContent:'space-between',
   },
   HEADERVIEW:{
     justifyContent:'space-evenly',
@@ -162,24 +224,46 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 25,
-    marginTop: 0,
     color:'#000000',
+
+  },
+  PlaneTypeTxt:{
+    marginLeft:'7%',
+    fontWeight: 'bold',
+    fontSize: 28,
+    color:'#739ED1',
+    marginBottom:10,
+  },
+  PlaneTypeType:{
+    marginLeft:'7%',
+    fontWeight: '600',
+    fontSize: 15,
+    color:'#a5c0e1',
+  },
+  OriginDetail:{
+    fontSize: 8,
+    color:'#9c9c9c',
+    fontWeight: 'bold',
+  },
+  DestinationDetail:{
+    fontSize: 8,
+    color:'#9c9c9c',
+    fontWeight: 'bold',
   },
   originText: {
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 15,
+    fontWeight: '900',
+    fontSize: 24,
     marginTop: 0,
     color:'#000000',
 
   },
   NUM:{
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 17,
-    marginTop: 0,
-    color:'#000000',
-
+    fontWeight: '800',
+    fontSize: 22,
+    marginTop: "30%",
+    color:'#2B92FA',
   },
   backBtn:{
     flexDirection: 'row',
@@ -190,5 +274,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 10,
+  },
+  attribute:{
+    textAlign: 'center',
+    fontSize: 15,
+    color:'#709BD1',
   },
 });

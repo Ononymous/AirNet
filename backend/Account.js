@@ -56,6 +56,9 @@ export default function Account({navigation}) {
 			if (error) {
 				throw error;
 			}
+			else {
+				Alert.alert("Profile updated!");
+			}
 		} catch (error) {
 			if (error instanceof Error) {
 				Alert.alert(error.message);

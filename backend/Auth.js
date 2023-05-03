@@ -40,6 +40,7 @@ export default function Auth() {
 		})
 
 		if (error) Alert.alert(error.message)
+		else Alert.alert("Check your email for the confirmation link!")
 		setLoading(false)
 	}
 

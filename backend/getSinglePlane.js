@@ -9,10 +9,14 @@ export default async function getSinglePlane(id, plane) {
             if(response) {
                 const airline = response?.data?.airline?.name
                 const planeModel = response?.data?.aircraft?.model?.text
-                const originFull = response?.data?.airport?.origin?.name
                 const origin = response?.data?.airport?.origin?.code?.iata
                 const destination = response?.data?.airport?.destination?.code?.iata
-                const destinationFull = response?.data?.airport?.destination?.name
+                const originCountry = response?.data?.airport?.origin?.position?.country?.codeLong ? response?.data?.airport?.origin?.position?.country?.codeLong : response?.data?.airport?.origin?.position?.country?.code
+                const destinationCountry = response?.data?.airport?.destination?.position?.country?.codeLong ? response?.data?.airport?.destination?.position?.country?.codeLong : response?.data?.airport?.destination?.position?.country?.code
+                const originCity = response?.data?.airport?.origin?.position?.region?.city
+                const destinationCity = response?.data?.airport?.destination?.position?.region?.city
+                const originFull = origin ? originCity + " (" + originCountry + ")": 'Unknown'
+                const destinationFull = destination ? destinationCity + " (" + destinationCountry + ")": 'Unknown'
                 const largeImages = response?.data?.aircraft?.images?.large
                 const sideViewImage = response?.data?.aircraft?.images?.sideview
                 const thumbnails = response?.data?.aircraft?.images?.thumbnails
@@ -29,16 +33,16 @@ export default async function getSinglePlane(id, plane) {
                 return {
                     ...plane,
                     imgUrl: imageUrl,
-                    airline: airline? airline : 'Unknown',
-                    planeType: planeModel? planeModel : 'Unknown',
+                    airline: airline? airline : 'N/A',
+                    planeType: planeModel? planeModel : 'N/A',
                     originFull: originFull,
                     destinationFull: destinationFull,
                     flightNumber: flightNumber,
-                    origin: origin? origin : 'Unknown',
-                    destination: destination? destination : 'Unknown',
+                    origin: origin? origin : 'N/A',
+                    destination: destination? destination : 'N/A',
                 }
             }
-            return null
+            return plane
 		} catch (error) {
 			console.error("Error fetching data:", error);
 		}

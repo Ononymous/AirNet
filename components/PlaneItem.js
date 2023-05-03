@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { StyleSheet, View, Image, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import HeartButton from './HeartButton';
 
@@ -9,7 +9,7 @@ export default function PlaneItem ({ plane, navigation }) {
         <View style={styles.buttonContainer}>
           <HeartButton color="white" id={plane?.id? plane.id:0}/>
         </View>
-        <Text style={styles.planeType}>{plane?.planeType? plane.planeType:"Unknown"}</Text>
+        <Text style={styles.planeType}>{plane?.planeType? plane.planeType:"N/A"}</Text>
       </ImageBackground>
     </TouchableOpacity>
   );

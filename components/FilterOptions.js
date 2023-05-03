@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import BackButton from './BackButton';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,7 @@ import OptionContext from '../backend/OptionContext';
 
 export default function FilterOptions({setModalVisible}) {
     const { sort, setSort, distance, setDistance } = useContext(OptionContext);
+    const [tempDistance, setTempDistance] = useState(distance);
     return (
         <SafeAreaView style={styles.modalContainer}>
             <View style={styles.modalTitleWrapper}>
@@ -55,7 +56,7 @@ export default function FilterOptions({setModalVisible}) {
                 <Text style={styles.modalTitle}>Filter</Text>
                 <View style={styles.modalSortOptionWrapper}>
                     <MaterialCommunityIcons name="map-marker-radius-outline" size={24} color="black" />
-                    <Text style={styles.modalText}>Search Radius: {(distance*62).toFixed(1)} miles</Text>
+                    <Text style={styles.modalText}>Search Radius: {(tempDistance*62).toFixed(0)} miles</Text>
                 </View>
                 <Slider
                     style={styles.modalSlider}
@@ -64,8 +65,8 @@ export default function FilterOptions({setModalVisible}) {
                     maximumValue={2}
                     upperLimit={2}
                     value={distance}
-                    onValueChange={value => setDistance(value)}
-                    // onSlidingComplete={value => setDistance(value)}
+                    onValueChange={value => setTempDistance(value)}
+                    onSlidingComplete={value => {setDistance(value); setTempDistance(value)}}
                 />
             </View>
         </SafeAreaView>

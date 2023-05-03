@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, View, Dimensions, Platform, RefreshControl } fr
 import PlaneItem from '../components/PlaneItem';
 import FavoritePlanesContext from '../backend/FavoritePlanesContext';
 import getSinglePlane from '../backend/getSinglePlane';
+import getFavoriteSingle from '../backend/getFavoriteSingle';
 import { useEffect, useState, useContext } from 'react';
 
 const tempPlane = {
@@ -39,12 +40,14 @@ export default function MyFavorite({navigation}) {
 
   useEffect(() => {
     (async () => {
-      setPlanes([]);
+      const planes = [];
       for(id of favoritePlanes) {
         tempPlane.id = id;
         const newPlane = await getSinglePlane(id, tempPlane);
-        setPlanes(planes => [...planes, newPlane]);
+        const newFavorite = await getFavoriteSingle(id, newPlane);
+        planes.push(newFavorite);
       }
+      setPlanes(planes);
       setRefreshing(false);
     })();
   }, [counter]);
