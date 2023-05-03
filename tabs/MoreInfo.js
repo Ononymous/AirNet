@@ -38,13 +38,13 @@ export default function MoreInfo({route, navigation}) {
             <Image source={{ uri: plane.imgUrl }} style={styles.image} backgroundColor='white' />
             <View style={styles.City}>
               {/* Need to change the following two lines into city name */}
-              <Text style={styles.OriginDetail}>Santa Babara</Text>
-              <Text style={styles.DestinationDetail}>Los Angeles</Text>
+              <Text style={styles.OriginDetail}>{plane.originFull}</Text>
+              <Text style={styles.DestinationDetail}>{plane.destinationFull}</Text>
             </View>
             <View style={styles.RouteContainer}>
-            <Text style={styles.originText}>{plane.origin}</Text>
-            <Image source={require('../assets/PlaneIcon.png')} style={styles.PlaneIcon}/>
-            <Text style={styles.originText}>{plane.destination}</Text>
+              <Text style={styles.originText}>{plane.origin}</Text>
+              <Image source={require('../assets/PlaneIcon.png')} style={styles.PlaneIcon}/>
+              <Text style={styles.originText}>{plane.destination}</Text>
             </View>
            
             </View>
@@ -53,18 +53,18 @@ export default function MoreInfo({route, navigation}) {
           <View style={styles.infoContainer3}>
 
             <View style={styles.ALLContainer} width={110}>
-              <FlightInfo str='Altitude'/>
-              <Text style={styles.NUM}>{plane.altitude} ft {'\n'}</Text>
+              <Text style={styles.NUM}>{plane.altitude !== 'N/A'? plane.altitude+' ft' : plane.altitude} {'\n'}</Text>
+              <Text style={styles.attribute}>Altitude</Text>
             </View>
             
             <View style={styles.ALLContainer} width={110}>
-              <FlightInfo str='Latitude'/>
-              <Text style={styles.NUM}>{plane.latitude} {'\n'}</Text>
+              <Text style={styles.NUM}>{plane.latitude !== 'N/A'? plane.latitude.toFixed(2) : plane.latitude} {'\n'}</Text>
+              <Text style={styles.attribute}>Latitude</Text>
             </View>
 
             <View style={styles.ALLContainer} width={110}>
-              <FlightInfo str='Longitude'/>
-              <Text style={styles.NUM}>{plane.longitude} {'\n'}</Text>
+              <Text style={styles.NUM}>{plane.longitude !== 'N/A'? plane.longitude.toFixed(2) : plane.longitude} {'\n'}</Text>
+              <Text style={styles.attribute}>Longitude</Text>
             </View>
 
           </View>
@@ -72,7 +72,7 @@ export default function MoreInfo({route, navigation}) {
 
           <View style={styles.SpeedContainer}>
             <Text style={styles.SpeedText}>Aircraft Speed</Text>
-            <Text style={styles.SpeedNUM}>{plane.speed} Knots {'\n'}</Text>
+            <Text style={styles.SpeedNUM}>{plane.speed !== 'N/A'? plane.speed+' Knots' : plane.speed}</Text>
           </View>
 
         </View>     
@@ -104,29 +104,31 @@ const styles = StyleSheet.create({
 
   },
   PlaneIcon:{
-    width: 100,
-    height: 40,
+    flex: 1,
+    height: 30,
     borderRadius: 10,
-    resizeMode: 'cover',
+    resizeMode: 'center',
     alignSelf: 'center',
     marginBottom: 5,
   },
   RouteContainer:{
     flexDirection: 'row',
-    padding: 3,
+    paddingBottom: 10,
     marginBottom: 0,
-    justifyContent:"space-evenly"
+    justifyContent:"center",
+    marginHorizontal: "10%",
     
   },
   City:{
     flexDirection: 'row',
-    padding: 0,
+    paddingTop: 10,
     marginBottom: 0,
-    justifyContent:'space-between'
+    justifyContent:'space-between',
+    marginHorizontal: "10%",
   },
   PlaneNUm:{
     color:'#ffffff',
-    fontSize:65,
+    fontSize: 48,
     fontWeight: 'bold',
     marginLeft:'5%',
   },
@@ -139,7 +141,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignContent:'center',
     padding: 3,
-    backgroundColor:'#ffffff',
     borderRadius: 10,
     marginBottom: '3%',
     marginHorizontal:4,
@@ -151,12 +152,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignContent:'center',
     padding: 3,
-    backgroundColor:'#ffffff',
     borderRadius: 10,
     marginBottom: 5,
     marginHorizontal:4,
     borderWidth: 0,
-
     backgroundColor:'#E1ECFD',
   },
   SpeedContainer:{
@@ -196,24 +195,25 @@ const styles = StyleSheet.create({
 
   },
   SpeedText:{
-    color:'#3C6EC0',
+    color:'#495e8e',
     fontWeight:'bold',
     textAlign: 'center',
-    fontSize:20,
-    marginTop:'5%'
+    fontSize:14,
+    marginTop:'2%'
   },
   SpeedNUM:{
-    color:'#3C6EC0',
+    color:'#495e8e',
     fontWeight:'bold',
     textAlign: 'center',
+    marginTop:'5%',
+    paddingBottom:'12%',
     fontSize:40,
   },
   infoContainer3:{
     flexDirection: 'row',
     padding: 3,
-    marginBottom: 0,
     marginBottom:'3%',
-    justifyContent:"space-evenly"
+    justifyContent:'space-between',
   },
   HEADERVIEW:{
     justifyContent:'space-evenly',
@@ -228,45 +228,42 @@ const styles = StyleSheet.create({
 
   },
   PlaneTypeTxt:{
-    marginLeft:'10%',
+    marginLeft:'7%',
     fontWeight: 'bold',
-    fontSize: 32,
-    color:'#61A6C8',
+    fontSize: 28,
+    color:'#739ED1',
     marginBottom:10,
   },
   PlaneTypeType:{
-    marginLeft:'5%',
-    fontWeight: 'bold',
-    fontSize: 20,
-    color:'#A2C9DC',
+    marginLeft:'7%',
+    fontWeight: '600',
+    fontSize: 15,
+    color:'#a5c0e1',
   },
   OriginDetail:{
-    fontSize: 15,
-    color:'#C2C5C6',
+    fontSize: 8,
+    color:'#9c9c9c',
     fontWeight: 'bold',
-    marginLeft:'5%'
   },
   DestinationDetail:{
-    fontSize: 15,
-    color:'#C2C5C6',
+    fontSize: 8,
+    color:'#9c9c9c',
     fontWeight: 'bold',
-    marginRight:'5%'
   },
   originText: {
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 35,
+    fontWeight: '900',
+    fontSize: 24,
     marginTop: 0,
     color:'#000000',
 
   },
   NUM:{
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 17,
-    marginTop: 0,
+    fontWeight: '800',
+    fontSize: 22,
+    marginTop: "30%",
     color:'#2B92FA',
-
   },
   backBtn:{
     flexDirection: 'row',
@@ -277,5 +274,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 10,
+  },
+  attribute:{
+    textAlign: 'center',
+    fontSize: 15,
+    color:'#709BD1',
   },
 });

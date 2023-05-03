@@ -9,7 +9,7 @@ export default function PlaneItem ({ plane, navigation }) {
         <View style={styles.buttonContainer}>
           <HeartButton color="white" id={plane?.id? plane.id:0}/>
         </View>
-        <Text style={styles.planeType}>{plane?.planeType? plane.planeType:"NA"}</Text>
+        <Text style={styles.planeType}>{plane?.planeType? plane.planeType:"N/A"}</Text>
       </ImageBackground>
     </TouchableOpacity>
   );
