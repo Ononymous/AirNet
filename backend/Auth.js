@@ -5,8 +5,6 @@ import { Button, Input } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native';
 import { Text } from 'react-native';
 
-
-
 export default function Auth() {
 const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -39,6 +37,7 @@ const [email, setEmail] = useState('')
 		})
 
 		if (error) Alert.alert(error.message)
+		else Alert.alert("Check your email for the confirmation link!")
 		setLoading(false)
 	}
 
