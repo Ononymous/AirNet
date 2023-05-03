@@ -144,12 +144,9 @@ async function updateFavoritePlanes() {
             <Stack.Screen name="MoreInfo" component={MoreInfo} options={({ navigation }) => ({
               headerStyle: {
                 height: TitleHeight,
-                backgroundColor: '#ffffff',
-              },
-              headerTitleStyle: {
-                fontSize: 24,
-                fontWeight: 'bold',
-                color: '#000000',
+                backgroundColor: '#71c5ee',
+                borderBottomWidth:0,
+                borderBottomColor:'#71c5ee',
               },
               headerLeft: () => (
                 <BackButton onPress={() => navigation.goBack()} />

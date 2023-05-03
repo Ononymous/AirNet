@@ -29,13 +29,13 @@ export default async function getSinglePlane(id, plane) {
                 return {
                     ...plane,
                     imgUrl: imageUrl,
-                    airline: airline? airline : 'Unknown',
-                    planeType: planeModel? planeModel : 'Unknown',
+                    airline: airline? airline : 'NA',
+                    planeType: planeModel? planeModel : 'NA',
                     originFull: originFull,
                     destinationFull: destinationFull,
                     flightNumber: flightNumber,
-                    origin: origin? origin : 'Unknown',
-                    destination: destination? destination : 'Unknown',
+                    origin: origin? origin : 'NA',
+                    destination: destination? destination : 'NA',
                 }
             }
             return null
