@@ -8,9 +8,11 @@ const FlightInfo=({str})=>{
 const styles = StyleSheet.create({
     infoContainerTitle:{
         fontWeight: 'bold',
-        fontSize: 15,
-        color:'#36454F',
-        textAlign:'left',
+        fontSize: 17,
+        color:'#6F9BE4',
+        marginLeft:'10%'
+        
+        
     },
 });
 

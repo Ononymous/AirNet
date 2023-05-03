@@ -12,7 +12,7 @@ const CameraButton = ({ onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#ffffff',
+
     alignItems: 'center',
     justifyContent: 'center',
     width: 50,
