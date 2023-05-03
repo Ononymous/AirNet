@@ -1,27 +1,21 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
 import FlightInfo from '../components/FlightInfo';
 import { useEffect } from 'react';
-import SessionContext from '../backend/SessionContext';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import HeartButton from '../components/HeartButton';
 import CameraButton from '../components/CameraButton';
 
 export default function MoreInfo({route, navigation}) {
-  const session = useContext(SessionContext);
   const { plane } = route.params;
   const renderHeaderRight = (id) => {
-    if (session && session.user) {
-      return (
-        <View style={styles.lowerContainer}>
-          <HeartButton id={id} dark={true}/>
-          <CameraButton onPress={() => alert('Camera pressed')} />
-        </View>
-      );
-    } else {
-      return <CameraButton onPress={() => alert('Camera pressed')} />;
-    }
+    return (
+      <View style={styles.lowerContainer}>
+        <HeartButton id={id} dark={true}/>
+        <CameraButton onPress={() => alert('Camera pressed')} />
+      </View>
+    );
   };
 
   useEffect(() => {
@@ -29,7 +23,7 @@ export default function MoreInfo({route, navigation}) {
       headerTitle: `${plane.flightNumber}`,
       headerRight: () => renderHeaderRight(plane.id),
     });
-  }, [navigation, plane.id, session]);
+  }, [navigation, plane.id]);
   
   return (
     <LinearGradient colors={['#fafafa', '#a8b2e4']} style={styles.container}>

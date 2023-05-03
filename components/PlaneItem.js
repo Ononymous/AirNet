@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { StyleSheet, View, Image, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import HeartButton from './HeartButton';
 
