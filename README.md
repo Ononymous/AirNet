@@ -53,6 +53,8 @@ Here is a screenshot of our first design:
 <br>
 [Click Here](https://docs.google.com/presentation/d/13k8u5GwKJcpTi3HXs5ICFjLOTZJt4VP88dQwsHjMpXA/edit?usp=sharing) to view our mid-point presentation slides.
 
+[Click Here](https://www.canva.com/design/DAFhz1USANU/KwKERXrIxxzKBm-GShMLpQ/view?utm_content=DAFhz1USANU&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink) to view our final showcase presentation slides.
+
 ## Credits
 
 Acknowledge any resources or collaborators you used for your project.
