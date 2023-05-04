@@ -40,6 +40,11 @@ $ npm start
 ## Usage
 
 Provide examples and instructions on how to use your project.
+- Live tracking of up to 30 planes in your area
+- Displays plane info such as location, speed, and type
+- Allows users to sign in and save their favorite planes for future tracking
+- Filters planes by distance, speed, and other criteria
+
 
 ## Our Journey
 
