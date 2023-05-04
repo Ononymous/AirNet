@@ -12,16 +12,13 @@ const SignInButton = ({ onPress }) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#2F80ED',
-    borderRadius: 25,
+    borderRadius: 10,
     width: '80%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
     marginTop: 20,
-    shadowColor: '#2F80ED',
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
     elevation: 10,
   },
   buttonText: {

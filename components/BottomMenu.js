@@ -1,9 +1,33 @@
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, Animated, Easing } from 'react-native';
 import CameraButton from './CameraButton';
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 
 const BottomMenu = ({ navigation, setOnce, setRefreshing, refreshing }) => {
+  const spinValue = useRef(new Animated.Value(0)).current;
+  
+  useEffect(() => {
+    if (refreshing) {
+      Animated.loop(
+        Animated.timing(spinValue, {
+          toValue: 1,
+          duration: 1000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        { resetBeforeIteration: true } // <-- add this option to reset the value before each loop
+      ).start();
+    } else {
+      spinValue.stopAnimation();
+      spinValue.setValue(0);
+    }
+  }, [refreshing, spinValue]);
+
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
   return (
     <View style={styles.menuBar}>
       <TouchableOpacity style={styles.menuBarButton} onPress={() => {navigation.navigate('MyFavorite');}}>
@@ -20,11 +44,14 @@ const BottomMenu = ({ navigation, setOnce, setRefreshing, refreshing }) => {
         <Text style={styles.menuBarButtonText}>Refresh</Text>
       </TouchableOpacity>:
       <TouchableOpacity style={styles.menuBarButton}>
-      <View style={styles.refreshing}>
-        <FontAwesome name="refresh" size={30} color="gray"/>
-      </View>
-      <Text style={styles.menuBarButtonText}>Refresh</Text>
-    </TouchableOpacity>}
+        <Animated.View style={{ transform: [{ rotate: spin }] }}>
+          <View style={styles.refreshing}>
+            <FontAwesome name="refresh" size={30} color="white"/>
+          </View>
+        </Animated.View>
+        <Text style={styles.menuBarButtonText}>Refreshing...</Text>
+      </TouchableOpacity>
+    }
       <TouchableOpacity style={styles.menuBarButton} onPress={() => {navigation.navigate('Setting');}}>
         <View style={styles.burger}>
           <Entypo name="menu" size={24} color="black" />
@@ -49,7 +76,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
     width: '33%',
-
   },
   menuBarButtonText: {
     fontSize: 16,

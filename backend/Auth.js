@@ -133,7 +133,7 @@ export default function Auth() {
 				<Button
 					title={signInActive ? "Login" : "Sign up"}
 					disabled={loading}
-					buttonStyle={{ backgroundColor: activeColor, borderRadius: 0, padding: 14}}
+					buttonStyle={{ backgroundColor: activeColor, borderRadius: 10, padding: 14, marginHorizontal: 10}}
 					titleStyle={{ fontSize: 20, fontWeight: 'bold' }}
 					onPress={signInActive ? () => signInWithEmail(): () => signUpWithEmail()}
 				/>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
 	switchButton: {
 		paddingHorizontal: 20,
 		paddingVertical: 10,
-		borderRadius: 0,
+		borderRadius: 10,
 		width: 170,
 		height: 60,
 		backgroundColor: activeColor,

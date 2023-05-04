@@ -11,18 +11,16 @@ const SignOutButton = ({ onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#F13208',
-    borderRadius: 25,
+    backgroundColor: '#1E90FF',
+    borderRadius: 10,
     width: '80%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
     marginTop: 20,
-    shadowColor: '#F13208',
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
     elevation: 10,
+    marginHorizontal: 100
   },
   buttonText: {
     color: '#FFFFFF',
