@@ -65,12 +65,14 @@ Final design:
 ## Credits
 
 ### Developers
-Backend:
+
+#### Backend
 - [Gen Tamada](https://github.com/Ononymous)
-Frontend:
+
+#### Frontend
 - [Ray Du](https://github.com/CongruiDu)
 - [Tommy So](https://github.com/Tommygithubaccount123)
 - [Bryce Wang](https://github.com/brycewangg)
-Special thanks to:
-- [Jiajia Feng]()
 
+### Special Thanks
+- [Jiajia Feng]()
