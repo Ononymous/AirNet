@@ -74,5 +74,5 @@ Final design:
 - [Tommy So](https://github.com/Tommygithubaccount123)
 - [Bryce Wang](https://github.com/brycewangg)
 
-### Special Thanks
+#### Special Thanks
 - [Jiajia Feng]()
