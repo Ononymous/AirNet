@@ -22,7 +22,7 @@ Provide instructions on how to install and set up your project, including any de
 
 1. Clone this repository:
 ```shell
-$ git clone https://github.com/your-username/your-project.git
+$ git clone https://github.com/Ononymous/AirNet.git
 ```
 2. Change into the project directory:
 ```shell
