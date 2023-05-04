@@ -39,7 +39,6 @@ $ npm start
 
 ## Usage
 
-Provide examples and instructions on how to use your project.
 - Live tracking of up to 30 planes in your area
 - Displays plane info such as location, speed, and type
 - Allows users to sign in and save their favorite planes for future tracking
@@ -65,5 +64,13 @@ Final design:
 
 ## Credits
 
-Acknowledge any resources or collaborators you used for your project.
+### Developers
+Backend:
+- [Gen Tamada](https://github.com/Ononymous)
+Frontend:
+- [Ray Du](https://github.com/CongruiDu)
+- [Tommy So](https://github.com/Tommygithubaccount123)
+- [Bryce Wang](https://github.com/brycewangg)
+Special thanks to:
+- [Jiajia Feng]()
 
