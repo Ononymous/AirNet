@@ -77,32 +77,86 @@ export default function Account({navigation}) {
 				<Input label="Username" value={username || ''} onChangeText={(text) => setUsername(text)} />
 			</View>
 
-			<View style={[styles.verticallySpaced, styles.mt20]}>
+			{/* <View style={[styles.verticallySpaced, styles.mt20]}>
 				<Button
 					title={loading ? 'Loading ...' : 'Update'}
 					onPress={() => updateProfile({ username })}
 					disabled={loading}
 				/>
+			</View> */}
+			<View style={[styles.verticallySpaced, styles.mt20]}>
+				<Button
+					title={loading ? 'Loading ...' : 'Update'}
+					onPress={() => updateProfile({ username })}
+					disabled={loading}
+					buttonStyle={styles.updateButton}
+					titleStyle={styles.updateButtonText}
+				/>
 			</View>
 
-			<View style={styles.verticallySpaced}>
+			{/* <View style={styles.verticallySpaced}>
 				<Button title="Sign Out" onPress={() => {supabase.auth.signOut(); navigation.goBack()}} />
+			</View> */}
+			<View style={styles.verticallySpaced}>
+				<Button
+					title="Sign Out"
+					onPress={() => {supabase.auth.signOut(); navigation.goBack()}}
+					buttonStyle={styles.signOutButton}
+					titleStyle={styles.signOutButtonText}
+				/>
 			</View>
 		</View>
 	);
 }
 
+// const styles = StyleSheet.create({
+// 	container: {
+// 		marginTop: 40,
+// 		padding: 12,
+// 	},
+// 	verticallySpaced: {
+// 		paddingTop: 4,
+// 		paddingBottom: 4,
+// 		alignSelf: 'stretch',
+// 	},
+// 	mt20: {
+// 		marginTop: 20,
+// 	},
+// });
+
 const styles = StyleSheet.create({
 	container: {
-		marginTop: 40,
-		padding: 12,
+	  marginTop: 40,
+	  padding: 12,
 	},
 	verticallySpaced: {
-		paddingTop: 4,
-		paddingBottom: 4,
-		alignSelf: 'stretch',
+	  paddingTop: 4,
+	  paddingBottom: 4,
+	  alignSelf: 'stretch',
 	},
 	mt20: {
-		marginTop: 20,
+	  marginTop: 20,
+	},
+	updateButton: {
+	  backgroundColor: '#007aff',
+	  borderRadius: 10,
+	  padding: 10,
+	  marginHorizontal: 10
+	},
+	updateButtonText: {
+	  color: '#fff',
+	  fontWeight: 'bold',
+	},
+	signOutButton: {
+	  backgroundColor: '#fff',
+	  borderRadius: 10,
+	  borderWidth: 1,
+	  borderColor: '#007aff',
+	  padding: 10,
+	  marginHorizontal: 10
+	},
+	signOutButtonText: {
+	  color: '#007aff',
+	  fontWeight: 'bold',
 	},
 });
