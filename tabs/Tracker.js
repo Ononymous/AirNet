@@ -36,11 +36,17 @@ export default function Tracker({ route, navigation }) {
 
   useEffect(() => {
     if (lat && lng && alt) {
+      // convert lat, lng, alt to ecef, earth-centered, earth-fixed coordinates (3d)
+
       const userEcef = llaToEcef(lat, lng, alt);
       // const planeEcef = llaToEcef(plane.latitude, plane.longitude, feetToMeters(plane.altitude));
       const planeEcef = llaToEcef(lat+1, lng, alt+10000);
 
+      // get 3d vector from user to plane
+
       const vectorUToP = vectorUserToPlane(userEcef, planeEcef);
+
+      // get distance from user to plane (meters)
 
       const tempDistance = vecDistance(vectorUToP);
       setDistance(tempDistance);
