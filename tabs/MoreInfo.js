@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, Dimensions } from 'react-native';
-import FlightInfo from '../components/FlightInfo';
 import { useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -13,7 +12,7 @@ export default function MoreInfo({route, navigation}) {
     return (
       <View style={styles.lowerContainer}>
         <HeartButton id={id} dark={true}/>
-        <CameraButton onPress={() => alert('Camera pressed')} />
+        <CameraButton onPress={() => navigation.navigate("Tracker", {plane: plane})} />
       </View>
     );
   };

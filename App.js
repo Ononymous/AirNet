@@ -10,6 +10,8 @@ import Setting from './tabs/Setting';
 import MoreInfo from './tabs/MoreInfo';
 import MyFavorite from './tabs/MyFavorite';
 import About from './tabs/About';
+import Tracker from './tabs/Tracker';
+
 import BackButton from './components/BackButton';
 import OptionsButton from './components/OptionsButton';
 
@@ -218,6 +220,20 @@ async function updateFavoritePlanes() {
             }
             <Stack.Screen name='About' component={About} options={({ navigation }) => ({
               headerTitle:'About this App',
+              headerStyle: {
+                height: TitleHeight,
+                backgroundColor: '#ffffff',
+              },
+              headerTitleStyle: {
+                fontSize: 24,
+                fontWeight: 'bold',
+                color: '#000000',
+              },
+              headerLeft: () => (
+                <BackButton onPress={() => navigation.goBack()} />
+              ),
+            })}/>
+            <Stack.Screen name='Tracker' component={Tracker} options={({ navigation }) => ({
               headerStyle: {
                 height: TitleHeight,
                 backgroundColor: '#ffffff',
