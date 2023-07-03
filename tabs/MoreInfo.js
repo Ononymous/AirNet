@@ -9,6 +9,7 @@ import CameraButton from '../components/CameraButton';
 export default function MoreInfo({route, navigation}) {
   const { plane } = route.params;
   const renderHeaderRight = (id) => {
+    console.log(plane)
     return (
       <View style={styles.lowerContainer}>
         <HeartButton id={id} dark={true}/>

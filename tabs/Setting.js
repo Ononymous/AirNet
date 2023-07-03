@@ -24,7 +24,7 @@ export default function Setting({navigation}) {
             </TouchableOpacity>
             <Text style={styles.userName}>{session?.user?.email}</Text>
           </>}
-          <View  style={styles.settingTab} >
+          {/* <View  style={styles.settingTab} >
               <View style={styles.Tab}>
                 <Ionicons name='notifications-outline' size={24} color="black" />
                 <Text style={styles.settingTabText}> Notifications</Text>
@@ -38,7 +38,7 @@ export default function Setting({navigation}) {
                 <Text style={styles.settingTabText}> GPS</Text>
               </View>
               <SwitchBar/>
-          </View>
+          </View> */}
 
           <TouchableOpacity onPress={()=>navigation.navigate('MyFavorite')}>
             <View  style={styles.settingTab} >

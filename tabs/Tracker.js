@@ -12,13 +12,12 @@ export default function Tracker({ route, navigation }) {
   const { height, width } = Dimensions.get('window');
   const screenRatio = height / width;
 
-  const [hasPermission, setHasPermission] = useState(null);
+  const [hasPermission, setHasPermission] = Camera.useCameraPermissions();
 
   const [distance, setDistance] = useState(null);
   const [score, setScore] = useState(null);
   const [enu, setEnu] = useState(null);
   const [matrix, setMatrix] = useState(null);
-  const [ratio, setRatio] = useState(null);
 
   const rotation = useOrientation();
 
@@ -28,12 +27,12 @@ export default function Tracker({ route, navigation }) {
   const alt = location?.alt;
 
   useEffect(() => {
-    if (plane?.hex) {
+    if (plane?.id) {
       navigation.setOptions({
         headerTitle: `Tracking ${plane.flightNumber}`,
       });
     }
-  }, [navigation, plane?.hex]);
+  }, [navigation, plane?.id]);
 
   useEffect(() => {
     if (lat && lng && alt) {
@@ -61,21 +60,10 @@ export default function Tracker({ route, navigation }) {
   }, [rotation, enu]);
 
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
-      if (status === 'granted') {
-        const ratios = await Camera.getSupportedRatiosAsync();
-        setRatio(ratios);
-      }
-    })();
-  }, []);
-
-  if (hasPermission === null) {
+  if (!hasPermission) {
     return <View />;
   }
-  if (hasPermission === false) {
+  else if (!hasPermission.granted) {
     return <Text>No access to camera</Text>;
   }
 
