@@ -51,6 +51,8 @@ export default function Tracker({ route, navigation }) {
       const tempDistance = vecDistance(vectorUToP);
       setDistance(tempDistance);
 
+      // where it starts getting complicated
+
       const enuBasis = toEnuBasis(lat, lng);
       const enu = ecefToEnu(vectorUToP, enuBasis);
       setEnu(enu);
@@ -59,6 +61,7 @@ export default function Tracker({ route, navigation }) {
 
   useEffect(() => {
     if (rotation && enu) {
+      console.log(rotation.alpha*180/Math.PI, rotation.beta*180/Math.PI, rotation.gamma*180/Math.PI)
       const tempScore = getScore(rotation, enu);
       if (tempScore === null) return;
       setScore(tempScore);
