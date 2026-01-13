@@ -1,54 +1,62 @@
 {
   "expo": {
     "name": "AirNet",
-    "slug": "AirNet",
+    "slug": "airnet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#71c5ee"
     },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.airnet.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "AirNet uses the camera for AR plane tracking to help you locate aircraft in the sky.",
+        "NSLocationWhenInUseUsageDescription": "AirNet needs your location to show nearby planes and calculate distances.",
+        "NSMotionUsageDescription": "AirNet uses motion sensors to track device orientation for AR plane tracking."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#71c5ee"
       },
-      "permissions":["HIGH_SAMPLING_RATE_SENSORS"]
+      "package": "com.airnet.app",
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "BODY_SENSORS"
+      ],
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      [
-        "expo-camera",
-        {
-          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-        }
-      ],
+      "expo-secure-store",
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+          "locationAlwaysAndWhenInUsePermission": "AirNet needs your location to show nearby planes and calculate distances."
         }
       ],
       [
-        "expo-sensors",
+        "expo-camera",
         {
-          "motionPermission": "Allow $(PRODUCT_NAME) to access your device motion."
+          "cameraPermission": "AirNet uses the camera for AR plane tracking to help you locate aircraft in the sky."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "supabaseUrl": "https://qbwfeeguozaiinzkxish.supabase.co",
+      "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFid2ZlZWd1b3phaWluemt4aXNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODMwODE0NzQsImV4cCI6MTk5ODY1NzQ3NH0.YE1QpV7L9y44TeWPK2psfaRdBaSBBd-tZNL24Tq-tEI"
+    }
   }
 }
+
